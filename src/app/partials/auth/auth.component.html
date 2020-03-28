@@ -1,0 +1,28 @@
+<div class="auth">
+    <div class="auth-content">
+      <img [src]="imagePath+'logo-main.png'" alt="" class="logo">
+      <label class="title">Gophster</label>
+      <div class="form-fields" style="margin-bottom: 70px;width: 430px" >
+        <form #f="ngForm" (ngSubmit)="login(f)">
+          <input type="text" required placeholder="Handle or Email" [(ngModel)]="user.login" name="handle" #handle="ngModel">
+          <input type="password" required  placeholder="Password" style="margin-top: 50px;" [(ngModel)]="user.password" name="password" #password="ngModel">
+        <div class="btn">
+          <p *ngIf="errorDisplay" >{{this.errorText}}</p>
+          <button type="submit" style="background-color: lime">Log In</button>
+<!--          <button (click)="onRegisterClick()" style="background-color: darkblue">Sign Up</button>-->
+        </div>
+        </form>
+      </div>
+    </div>
+  <img class="art-board" [src]="imagePath+'logo-main.png'" alt="art-board">
+  <div class="footer">
+    <div class="contacts">
+      <div class="flex-box-center">
+        <h6 style="color: white">
+          Don't have an account?
+            <span style="color: #6495ED; cursor: pointer" (click)="onRegisterClick()" >Sign Up</span>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>
