@@ -1,27 +1,71 @@
-<div class="auth">
-    <div class="auth-content">
-      <img [src]="imagePath+'logo-main.png'" alt="" class="logo">
-      <label class="title">Gophster</label>
-      <div class="form-fields" style="margin-bottom: 70px;width: 430px" >
-        <form #f="ngForm" (ngSubmit)="login(f)">
-          <input type="text" required placeholder="Handle or Email" [(ngModel)]="user.login" name="handle" #handle="ngModel">
-          <input type="password" required  placeholder="Password" style="margin-top: 50px;" [(ngModel)]="user.password" name="password" #password="ngModel">
-        <div class="btn">
-          <p *ngIf="errorDisplay" >{{this.errorText}}</p>
-          <button type="submit" style="background-color: lime">Log In</button>
-<!--          <button (click)="onRegisterClick()" style="background-color: darkblue">Sign Up</button>-->
+<div class="container-fluid">
+  <div class="row no-gutters row-fluid">
+    <div class="col-md-8  d-none d-md-block">
+      <div class="leftside text-center">
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center ">
+            <img
+              [src]="imagePath + 'logo-main.png'"
+              alt=""
+              class="img-fluid img-responsive  .hidden-md-down logo"
+            />
+          </div>
         </div>
-        </form>
       </div>
     </div>
-  <img class="art-board" [src]="imagePath+'logo-main.png'" alt="art-board">
-  <div class="footer">
-    <div class="contacts">
-      <div class="flex-box-center">
-        <h6 style="color: white">
-          Don't have an account?
-            <span style="color: #6495ED; cursor: pointer" (click)="onRegisterClick()" >Sign Up</span>
-        </h6>
+    <div class="col-md-4  col-12">
+      <div class="rightside text-center">
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center ">
+            <form class="col-10" #f="ngForm" (ngSubmit)="login(f)">
+              <label class="title">
+                <img
+                  [src]="imagePath + 'logo-small.png'"
+                  class="rounded-circle img-responsive w-25"
+                  alt="Small Logo"
+                />
+                <h4 class="h3 py-3">Login to Gophster</h4>
+              </label>
+
+              <div class="form-group input-group input-group-lg">
+                <input
+                  type="text"
+                  class="form-control "
+                  required
+                  placeholder="Handle or Email"
+                  [(ngModel)]="user.login"
+                  name="handle"
+                  #handle="ngModel"
+                />
+              </div>
+              <div class="form-group input-group input-group-lg">
+                <input
+                  type="password"
+                  required
+                  placeholder="Password"
+                  class="form-control"
+                  [(ngModel)]="user.password"
+                  name="password"
+                  #password="ngModel"
+                />
+              </div>
+              <div class="form-group ">
+                <p *ngIf="errorDisplay">{{ this.errorText }}</p>
+                <button type="button" class="btn btn-lg btn-block">
+                  Sign In
+                </button>
+                <!--          <button (click)="onRegisterClick()" style="background-color: darkblue">Sign Up</button>-->
+              </div>
+            </form>
+            <div>
+              <hr />
+              <div class="h4">
+                Don't have an account?
+                <a (click)="onRegisterClick()">Sign Up</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
