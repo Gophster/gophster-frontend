@@ -1,15 +1,16 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ICONS, IMAGES } from "../../utils";
 import { NgForm } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { AuthService } from "../../services/auth/auth.service";
+import {StateService} from "../../services/state/state.service";
 
 @Component({
   templateUrl: "./auth.component.html",
   styleUrls: ["./auth.component.scss"]
 })
-export class AuthComponent implements OnDestroy {
+export class AuthComponent implements OnInit,OnDestroy {
   public iconPath: string = ICONS;
   public imagePath: string = IMAGES;
   public user: any = {
@@ -18,15 +19,21 @@ export class AuthComponent implements OnDestroy {
   };
   public errorDisplay: boolean = false;
   public errorText: string = "";
+  public registrired: boolean;
 
   private loginSubscription: Subscription;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, public stateService: StateService) {}
+
+  ngOnInit(): void {
+    this.registrired = this.stateService.registrired;
+  }
 
   ngOnDestroy(): void {
     if (this.loginSubscription) {
       this.loginSubscription.unsubscribe();
     }
+    this.stateService.registrired = false;
   }
   public onResetClick() {
     this.router.navigate(["/resetpwd"]);

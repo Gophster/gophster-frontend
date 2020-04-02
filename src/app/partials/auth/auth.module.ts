@@ -10,8 +10,8 @@ import {NonAuthGuard} from '../../guards';
   imports: [CommonModule,
     FormsModule,
     RouterModule.forChild(routes)],
-  declarations: [AuthComponent],
-  exports: [AuthComponent],
+  declarations: [],
+  exports: [],
   providers: [NonAuthGuard]
 })
 

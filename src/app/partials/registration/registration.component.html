@@ -15,58 +15,31 @@
     </div>
     <div class="col-md-4  col-12 ">
       <div class="rightside my-auto text-center">
-        <!-- <div class="container-fluid text-center pt-5">
-          <h4 class="h1">Not a Gopher?</h4>
-          <button
-            (click)="onRegisterClick()"
-            type="button"
-            class="btn btn-lg my-3 py-3"
-            id="signup"
-          >
-            Sign up now
-          </button>
-
-          <div class="container pt-5 ">
-            <div class="separator">OR</div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="form-group  my-md-5 my-sm-4 my-xs-1">
-            <label for="email">Handle or Email address:</label>
-            <input
-              type="text"
-              class=" form-control form-control-lg "
-              required
-              [(ngModel)]="user.login"
-              name="handle"
-              #handle="ngModel"
-            />
-          </div>
-          <div class="form-group ">
-            <label for="pwd">Password:</label>
-            <input
-              type="password"
-              required
-              class="form-control form-control-lg"
-              [(ngModel)]="user.password"
-              name="password"
-              #password="ngModel"
-            />
-          </div>
-          <div class="checkbox text-center mt-5">
-            <button type="button" class="btn btn-lg my-3 py-3" id="signup">
-              Sign in
-            </button>
-          </div>
-        </div>
-      </div> -->
-
         <div class="container h-100">
           <div class="row h-100 justify-content-center align-items-center ">
             <form class="col-10" #f="ngForm" (ngSubmit)="login(f)">
               <div class="container">
+                <div class="form-group my-md-4 my-sm-4 my-xs-1">
+                  <label for="handle">Handle</label>
+                  <input
+                    type="text"
+                    required
+                    class="form-control "
+                    required
+                    [(ngModel)]="user.handle"
+                    name="handle"
+                    #handle="ngModel"
+                    minlength="2"
+                    maxlength="25"
+                    (blur)="validateHandle()"
+                    (keydown)="validateHandleKey()"
+                    [ngStyle]="{'border' : this.handleInpErr? '2px solid red': ''}"
+                    autocomplete="off"
+                  />
+                  <span class="text-danger" *ngIf="handleInpErr">{{handleErrorText}}</span>
+                </div>
                 <div class="form-group  my-md-4 my-sm-4 my-xs-1">
-                  <label for="email">Handle or Email address:</label>
+                  <label for="email">Email</label>
                   <input
                     type="email"
                     required
@@ -74,22 +47,15 @@
                     [(ngModel)]="user.email"
                     name="email"
                     #email="ngModel"
+                    (blur)="validateEmail()"
+                    (keydown)="validateEmailKeyCode()"
+                    [ngStyle]="{'border' : this.emailInpErr? '2px solid red': ''}"
+                    autocomplete="off"
                   />
+                  <span class="text-danger" *ngIf="emailInpErr">{{emailErrorText}}</span>
                 </div>
                 <div class="form-group my-md-4 my-sm-4 my-xs-1">
-                  <label for="pwd">Email address:</label>
-                  <input
-                    type="text"
-                    required
-                    class="form-control "
-                    required
-                    [(ngModel)]="user.login"
-                    name="handle"
-                    #handle="ngModel"
-                  />
-                </div>
-                <div class="form-group my-md-4 my-sm-4 my-xs-1">
-                  <label for="pwd">Password:</label>
+                  <label for="password">Password</label>
                   <input
                     type="password"
                     required
@@ -97,12 +63,19 @@
                     [(ngModel)]="user.password"
                     name="password"
                     #password="ngModel"
+                    minlength="8"
+                    maxlength="35"
+                    (blur)="validatePassword()"
+                    (keydown)="validatePasswordKey()"
+                    [ngStyle]="{'border' : this.passInpErr? '2px solid red': ''}"
+                    autocomplete="off"
                   />
+                  <span class="text-danger" *ngIf="passInpErr">{{passwordErrorText}}</span>
                 </div>
                 <div
                   class="form-group justify-content-center align-items-center my-md-4 my-sm-4 my-xs-1"
                 >
-                  <label for="pwd">Confirm Password:</label>
+                  <label for="confirmPassword">Confirm Password</label>
                   <input
                     type="password"
                     required
@@ -110,13 +83,20 @@
                     [(ngModel)]="user.confirmPassword"
                     name="confirmPassword"
                     #confirmPassword="ngModel"
+                    minlength="8"
+                    maxlength="35"
+                    (blur)="validateConfirmPassword()"
+                    (keydown)="validateConfirmPasswordKey()"
+                    [ngStyle]="{'border' : this.confPassInpErr? '2px solid red': ''}"
+                    autocomplete="off"
                   />
+                  <span class="text-danger" *ngIf="confPassInpErr">{{confirmPassErrorText}}</span>
                 </div>
 
                 <div class="form-group my-md-5 my-sm-4 my-xs-1">
                   <!-- <p *ngIf="errorDisplay">{{ this.errorText }}</p> -->
-                  <button type="button" class="btn btn-lg btn-block">
-                    Sign in
+                  <button type="submit" class="btn btn-lg btn-block">
+                    Sign up
                   </button>
                   <!--          <button (click)="onRegisterClick()" style="background-color: darkblue">Sign Up</button>-->
                 </div>

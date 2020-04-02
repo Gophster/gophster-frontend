@@ -9,6 +9,7 @@ import {RegistrationComponent} from './partials/registration/registration.compon
 import {AuthService} from './services';
 import {RegistrationService} from './services';
 import { ResetpwdComponent } from './partials/resetpwd/resetpwd.component';
+import {StateService} from "./services/state/state.service";
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { ResetpwdComponent } from './partials/resetpwd/resetpwd.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthService, RegistrationService],
+  providers: [AuthService, RegistrationService, StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
