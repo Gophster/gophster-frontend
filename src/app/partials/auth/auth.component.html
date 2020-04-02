@@ -1,11 +1,11 @@
 <div class="container-fluid">
-  <div class="row no-gutters row-fluid">
+  <div class="row no-gutters align-ites-center ">
     <div class="col-md-8  d-none d-md-block">
       <div class="leftside text-center">
         <div class="container h-100">
           <div class="row h-100 justify-content-center align-items-center ">
             <img
-              [src]="imagePath + 'logo-main.png'"
+              [src]="imagePath + 'logo.PNG'"
               alt=""
               class="img-fluid img-responsive  .hidden-md-down logo"
             />
@@ -13,56 +13,58 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4  col-12">
-      <div class="rightside text-center">
+    <div class="col-md-4  col-12 ">
+      <div class="rightside my-auto text-center">
         <div class="container h-100">
           <div class="row h-100 justify-content-center align-items-center ">
             <form class="col-10" #f="ngForm" (ngSubmit)="login(f)">
-              <label class="title">
-                <img
-                  [src]="imagePath + 'logo-small.png'"
-                  class="rounded-circle img-responsive w-25"
-                  alt="Small Logo"
-                />
-                <h4 class="h3 py-3">Login to Gophster</h4>
-              </label>
-
-              <div class="form-group input-group input-group-lg">
-                <input
-                  type="text"
-                  class="form-control "
-                  required
-                  placeholder="Handle or Email"
-                  [(ngModel)]="user.login"
-                  name="handle"
-                  #handle="ngModel"
-                />
-              </div>
-              <div class="form-group input-group input-group-lg">
-                <input
-                  type="password"
-                  required
-                  placeholder="Password"
-                  class="form-control"
-                  [(ngModel)]="user.password"
-                  name="password"
-                  #password="ngModel"
-                />
-              </div>
-              <div class="form-group ">
-                <p *ngIf="errorDisplay">{{ this.errorText }}</p>
-                <button type="button" class="btn btn-lg btn-block">
-                  Sign In
+              <div id="signupdiv">
+                <h4 class="h2">Not a Gopher?</h4>
+                <button
+                  (click)="onRegisterClick()"
+                  type="button"
+                  class="btn btn-lg px-sm-3 px-md-5"
+                  id="signup"
+                >
+                  Sign up now
                 </button>
-                <!--          <button (click)="onRegisterClick()" style="background-color: darkblue">Sign Up</button>-->
+                <div class="separator">OR</div>
+              </div>
+
+              <div class="container">
+                <div class="form-group  my-md-4 my-sm-4 my-xs-1">
+                  <label for="email">Handle or Email address:</label>
+                  <input
+                    type="text"
+                    class=" form-control form-control-lg "
+                    required
+                    [(ngModel)]="user.login"
+                    name="handle"
+                    #handle="ngModel"
+                  />
+                </div>
+                <div class="form-group my-md-3 my-sm-4 my-xs-1">
+                  <label for="pwd">Password:</label>
+                  <input
+                    type="password"
+                    required
+                    class="form-control form-control-lg"
+                    [(ngModel)]="user.password"
+                    name="password"
+                    #password="ngModel"
+                  />
+                </div>
+                <div class="form-group my-md-5 my-sm-4 my-xs-1">
+                  <!-- <p *ngIf="errorDisplay">{{ this.errorText }}</p> -->
+                  <button type="button" class="btn btn-lg btn-block">
+                    Sign in
+                  </button>
+                  <!--          <button (click)="onRegisterClick()" style="background-color: darkblue">Sign Up</button>-->
+                </div>
               </div>
             </form>
-            <div>
-              <hr />
-              <div class="h4">
-                Don't have an account?
-                <a (click)="onRegisterClick()">Sign Up</a>
-              </div>
+            <div class="h5 mb-5">
+              <a (click)="onResetClick()"> Forgot Password?</a>
             </div>
           </div>
         </div>

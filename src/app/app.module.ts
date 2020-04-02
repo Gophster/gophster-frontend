@@ -8,12 +8,15 @@ import {AuthComponent} from './partials/auth/auth.component';
 import {RegistrationComponent} from './partials/registration/registration.component';
 import {AuthService} from './services';
 import {RegistrationService} from './services';
+import { ResetpwdComponent } from './partials/resetpwd/resetpwd.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ResetpwdComponent
   ],
   imports: [
     BrowserModule,

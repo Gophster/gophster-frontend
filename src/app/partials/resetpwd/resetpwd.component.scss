@@ -31,7 +31,6 @@ input:focus {
   outline: none !important;
 }
 .btn {
-
   background-color: rgb(164, 108, 60);
   color: white;
   &:hover {
@@ -62,7 +61,9 @@ a {
 p {
   font-family: "Lobster", "Microsoft JhengHei UI";
 }
-
+#signup {
+  width: 50%;
+}
 #signupdiv {
   line-height: 5rem;
 }
