@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ICONS, IMAGES } from "../../utils";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 @Component({
   selector: "app-resetpwd",
   templateUrl: "./resetpwd.component.html",
@@ -8,17 +9,19 @@ import { Router } from "@angular/router";
 })
 export class ResetpwdComponent implements OnInit {
   public imagePath: string = IMAGES;
-  showEmailInput = true;
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   public onSubmit() {
+    Swal.fire({
+      title: "",
+      text: "Reset Password Instruction was sent to your email",
+      icon: "success",
+      confirmButtonColor: "rgb(171, 119, 75)",
+      timer: 2000
+    });
     this.router.navigate(["/auth"]);
-  }
-
-  submitForm() {
-    this.showEmailInput = !this.showEmailInput;
-    console.log(this.showEmailInput);
   }
 }
