@@ -2,18 +2,19 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {AuthComponent} from './auth.component';
-import { routes } from './auth.routes';
+import { routes } from './main.routes';
 import {AuthGuard, NonAuthGuard} from '../../guards';
+import {MainComponent} from './main.component';
+import {DashboardModule} from './dashboard/dashboard.module';
 
 @NgModule({
   imports: [CommonModule,
-    FormsModule,
+    DashboardModule,
     RouterModule.forChild(routes)],
-  declarations: [],
-  exports: [],
-  providers: [NonAuthGuard]
+  declarations: [MainComponent],
+  exports: [MainComponent],
+  providers: [AuthGuard]
 })
 
-export class AuthModule {
+export class MainModule {
 }

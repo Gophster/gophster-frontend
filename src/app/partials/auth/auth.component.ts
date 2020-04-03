@@ -5,12 +5,13 @@ import { NgForm } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { AuthService } from "../../services/auth/auth.service";
 import {StateService} from "../../services/state/state.service";
+import jwtDecode from 'jwt-decode';
 
 @Component({
   templateUrl: "./auth.component.html",
   styleUrls: ["./auth.component.scss"]
 })
-export class AuthComponent implements OnInit,OnDestroy {
+export class AuthComponent implements OnInit, OnDestroy {
   public iconPath: string = ICONS;
   public imagePath: string = IMAGES;
   public user: any = {
@@ -43,11 +44,15 @@ export class AuthComponent implements OnInit,OnDestroy {
   }
   public login(f: NgForm) {
     this.loginSubscription = this.authService.loginRequest(this.user).subscribe(
-      response => {},
-      error => {
+      (response) => {
+        // response = jwtDecode(response.accessToken);
+        localStorage.setItem('access_token', response.accessToken);
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
         this.errorDisplay = true;
         this.errorText = "Invalid Credentials!";
       }
     );
-  }
+}
 }
