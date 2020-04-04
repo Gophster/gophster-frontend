@@ -4,14 +4,14 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { RegistrationComponent } from './registration.component';
 import { routes } from './registration.routes';
-import {NonAuthGuard} from '../../guards';
+import {AuthGuard, NonAuthGuard} from '../../guards';
 
 @NgModule({
   imports: [CommonModule,
     FormsModule,
     RouterModule.forChild(routes)],
-  declarations: [RegistrationComponent],
-  exports: [RegistrationComponent],
+  declarations: [],
+  exports: [],
   providers: [NonAuthGuard]
 })
 

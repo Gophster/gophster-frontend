@@ -3,11 +3,20 @@ import { Observable } from 'rxjs';
 import { API } from '../../utils';
 import { Injectable } from '@angular/core';
 
+import jwtDecode from 'jwt-decode';
+import {Router} from '@angular/router';
+
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient, private router: Router,) {
   }
   public loginRequest(user): Observable<any> {
     return this.http.post(`${API}auth/signin`, user);
+  }
+
+  public setUser(resp: any) {
+    localStorage.setItem('access_token', resp.access_token);
+    this.router.navigate(['/dashboard']);
   }
 }

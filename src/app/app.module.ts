@@ -9,6 +9,10 @@ import {RegistrationComponent} from './partials/registration/registration.compon
 import {AuthService} from './services';
 import {RegistrationService} from './services';
 import { ResetpwdComponent } from './partials/resetpwd/resetpwd.component';
+import {StateService} from './services/state/state.service';
+import { DashboardComponent } from './partials/main/dashboard/dashboard.component';
+import { MainComponent } from './partials/main/main.component';
+import {MainModule} from './partials/main';
 
 
 @NgModule({
@@ -16,15 +20,16 @@ import { ResetpwdComponent } from './partials/resetpwd/resetpwd.component';
     AppComponent,
     AuthComponent,
     RegistrationComponent,
-    ResetpwdComponent
+    ResetpwdComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MainModule
   ],
-  providers: [AuthService, RegistrationService],
+  providers: [AuthService, RegistrationService, StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
