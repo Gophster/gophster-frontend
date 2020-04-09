@@ -31,7 +31,6 @@ input:focus {
   outline: none !important;
 }
 .btn {
-
   background-color: rgb(164, 108, 60);
   color: white;
   &:hover {
@@ -83,4 +82,8 @@ p {
 }
 .separator::after {
   margin-left: 2em;
+}
+h4 {
+  font-family: "Lobster";
+
 }

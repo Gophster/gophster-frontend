@@ -1,0 +1,23 @@
+<div class="container post">
+  <div class="input-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="What's Happening?"
+      [(ngModel)]="post"
+    />
+  </div>
+  <div>
+    <button
+      (click)="onGopher()"
+      type="button"
+      class="btn btn-secondary btn-sm my-1"
+    >
+      Gopher
+    </button>
+  </div>
+</div>
+
+<div *ngFor="let postItem of posts" class="container display-post mt-2">
+  {{ postItem }}
+</div>

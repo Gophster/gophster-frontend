@@ -1,2 +1,18 @@
-<span style="font-size: 26px">{{obj.handle}}</span> <br>
-<button type="button" class="btn btn-danger" (click)="onLogOut()">Log Out</button>
+<ul class="nav flex-column">
+  <span style="font-size: 26px;">{{ obj.handle }}</span>
+  <br />
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Notification</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Messge</a>
+  </li>
+</ul>
+<div class="flex-column">
+  <button type="button" class="btn btn-danger btn-sm ml-3" (click)="onLogOut()">
+    Log Out
+  </button>
+</div>
