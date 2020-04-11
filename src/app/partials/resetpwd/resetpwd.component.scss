@@ -58,30 +58,13 @@ a {
 //   }
 // }
 
-p {
-  font-family: "Lobster", "Microsoft JhengHei UI";
+h5,
+a {
+  color: rgb(132, 80, 40);
 }
 #signup {
   width: 50%;
 }
 #signupdiv {
   line-height: 5rem;
-}
-.separator {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: rgb(171, 119, 75);
-}
-.separator::before,
-.separator::after {
-  content: "";
-  flex: 0.7;
-  border-bottom: 1px solid rgb(171, 119, 75);
-}
-.separator::before {
-  margin-right: 2em;
-}
-.separator::after {
-  margin-left: 2em;
 }

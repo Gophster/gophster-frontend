@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 @Component({
   selector: "app-resetpwd",
   templateUrl: "./resetpwd.component.html",
-  styleUrls: ["./resetpwd.component.scss"]
+  styleUrls: ["./resetpwd.component.scss"],
 })
 export class ResetpwdComponent implements OnInit {
   public imagePath: string = IMAGES;
@@ -14,14 +14,17 @@ export class ResetpwdComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public onSubmit() {
+   onSubmit() {
     Swal.fire({
       title: "",
       text: "Reset Password Instruction was sent to your email",
       icon: "success",
       confirmButtonColor: "rgb(171, 119, 75)",
-      timer: 2000
+      timer: 2000,
     });
+    this.router.navigate(["/auth"]);
+  }
+  onBackToLogin() {
     this.router.navigate(["/auth"]);
   }
 }
