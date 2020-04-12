@@ -28,13 +28,26 @@
                 <label for="email">Email address:</label>
                 <input
                   type="email"
-                  class="form-control form-control-lg"
                   required
-                  name="handle"
+                  class="form-control"
+                  [(ngModel)]="user.email"
+                  name="email"
+                  #email="ngModel"
+                  (blur)="validateEmail()"
+                  (keydown)="validateEmailKeyCode()"
+                  [ngStyle]="{
+                    border: this.emailInpErr ? '2px solid red' : ''
+                  }"
+                  autocomplete="off"
                 />
+                <span class="text-danger" *ngIf="emailInpErr">{{
+                  emailErrorText
+                }}</span>
               </div>
+
               <div class="form-group my-md-5 my-sm-4 my-xs-1">
                 <button
+                
                   (click)="onSubmit()"
                   type="button"
                   class="btn btn-lg btn-block"

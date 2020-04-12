@@ -15,7 +15,6 @@ import { MainComponent } from "./partials/main/main.component";
 import { MainModule } from "./partials/main";
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
