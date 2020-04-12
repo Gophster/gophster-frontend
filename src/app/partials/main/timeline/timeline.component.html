@@ -1,15 +1,17 @@
-<div class="container post">
-  <div>
-    <textarea
-      class="form-control"
-      placeholder="What's Happening?"
-      [(ngModel)]="post"
-      rows="4"
-    ></textarea>
-  </div>
-  <div class="align-self-end ml-auto">
-    <button (click)="onGopher()" type="button" class="btn btn-sm my-1 px-4">
-      Gopher
+<div class="container post py-2">
+  <textarea
+    class="form-control"
+    placeholder="What's Happening?"
+    [(ngModel)]="post"
+    rows="2"
+  ></textarea>
+  <div class="row px-3">
+    <button
+      (click)="onGopher()"
+      type="button"
+      class="ml-auto btn my-1 mr-1 px-4"
+    >
+      Submit
     </button>
   </div>
 </div>
@@ -32,9 +34,9 @@
         >
           <i class="fas fa-sort-down"></i>
         </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a class="mx-2" href="#">
-            <i class="fas fa-trash-alt"></i> Delete Goph</a
+        <div class="dropdown-menu row" aria-labelledby="dropdownMenu2">
+          <a class="fixed-top" href="#">
+            <i class="fas fa-trash-alt"></i> Delete</a
           >
         </div>
       </div>

@@ -10,12 +10,26 @@ textarea {
   color: rgb(163, 108, 60);
   border: none;
   outline: none;
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none; /*remove the resize handle on the bottom right*/
   height: auto;
   background-color: rgb(246, 246, 203);
   &:focus {
     background-color: rgb(246, 246, 203);
     color: rgb(163, 108, 60);
     outline: 0;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
   }
 }
 
@@ -42,11 +56,14 @@ h6 {
   color: rgb(179, 135, 89);
 }
 .dropdown-menu {
+  height: 30px;
   background-color: rgb(246, 246, 203);
   color: rgb(179, 135, 89);
-  border-radius: 15px;
-
-  box-shadow: 3px 3px rgb(164, 108, 60);
+  border-radius: 12px;
+  a {
+    text-align: center;
+  }
+  box-shadow: 1px 1px rgb(164, 108, 60);
 }
 span {
   color: rgb(164, 108, 60);
