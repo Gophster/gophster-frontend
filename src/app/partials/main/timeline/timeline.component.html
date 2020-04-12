@@ -1,23 +1,45 @@
-<div class="container post">
-  <div class="input-group">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="What's Happening?"
-      [(ngModel)]="post"
-    />
-  </div>
-  <div>
+<div class="container post py-2">
+  <textarea
+    class="form-control"
+    placeholder="What's Happening?"
+    [(ngModel)]="post"
+    rows="2"
+  ></textarea>
+  <div class="row px-3">
     <button
       (click)="onGopher()"
       type="button"
-      class="btn btn-secondary btn-sm my-1"
+      class="ml-auto btn my-1 mr-1 px-4"
     >
-      Gopher
+      Submit
     </button>
   </div>
 </div>
 
 <div *ngFor="let postItem of posts" class="container display-post mt-2">
-  {{ postItem }}
+  <div class="row">
+    <div class="col-10 col-xs-11 col-sm-11 col-md-11 col-lg-11">
+      <h6 class="h6 mt-2">@{{ obj.handle }}</h6>
+      <span class="pr-1">
+        {{ postItem }}
+      </span>
+    </div>
+    <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+      <div class="btn-group dropleft">
+        <a
+          data-toggle="dropdown"
+          aria-expanded="false"
+          aria-haspopup="true"
+          href=""
+        >
+          <i class="fas fa-sort-down"></i>
+        </a>
+        <div class="dropdown-menu row" aria-labelledby="dropdownMenu2">
+          <a class="fixed-top" href="#">
+            <i class="fas fa-trash-alt"></i> Delete</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
