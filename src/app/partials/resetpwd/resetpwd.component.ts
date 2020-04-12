@@ -20,14 +20,16 @@ export class ResetpwdComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    Swal.fire({
-      title: "",
-      text: "Reset Password Instruction was sent to your email",
-      icon: "success",
-      confirmButtonColor: "rgb(171, 119, 75)",
-      timer: 2000,
-    });
-    // this.router.navigate(["/auth"]);
+    if (!this.emailInpErr) {
+      Swal.fire({
+        title: "",
+        text: "Reset Password Instruction was sent to " + this.user.email,
+        icon: "success",
+        confirmButtonColor: "rgb(171, 119, 75)",
+        timer: 5000,
+      });
+      // this.router.navigate(["/auth"]);
+    }
   }
   onBackToLogin() {
     this.router.navigate(["/auth"]);

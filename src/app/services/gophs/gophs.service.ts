@@ -8,21 +8,20 @@ import decode from 'jwt-decode';
 import {Router} from '@angular/router';
 
 @Injectable()
-export class AuthService {
+export class GophsService {
 
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  public getToken(): string {
-    return localStorage.getItem('access_token');
+  public postGoph(obj: any): Observable<any> {
+    return this.http.post(`${API}gophs`, obj);
   }
 
-  public loginRequest(user): Observable<any> {
-    return this.http.post(`${API}auth/signin`, user);
+  public getGoph(): Observable<any> {
+    return this.http.get(`${API}gophs`);
   }
 
-  public setUser(resp: any) {
-    localStorage.setItem('access_token', resp.access_token);
-    this.router.navigate(['/dashboard']);
+  public deleteGoph(id: number): Observable<any> {
+    return this.http.delete(`${API}gophs/${id}`);
   }
 }

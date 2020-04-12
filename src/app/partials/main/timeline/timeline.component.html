@@ -21,7 +21,7 @@
     <div class="col-10 col-xs-11 col-sm-11 col-md-11 col-lg-11">
       <h6 class="h6 mt-2">@{{ obj.handle }}</h6>
       <span class="pr-1">
-        {{ postItem }}
+        {{ postItem.text }}
       </span>
     </div>
     <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -35,7 +35,7 @@
           <i class="fas fa-sort-down"></i>
         </a>
         <div class="dropdown-menu row" aria-labelledby="dropdownMenu2">
-          <a class="fixed-top" href="#">
+          <a class="fixed-top" (click)="deleteGoph(postItem)">
             <i class="fas fa-trash-alt"></i> Delete</a
           >
         </div>
