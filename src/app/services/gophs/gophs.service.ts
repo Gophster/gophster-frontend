@@ -24,4 +24,8 @@ export class GophsService {
   public deleteGoph(id: number): Observable<any> {
     return this.http.delete(`${API}gophs/${id}`);
   }
+
+  public editGoph(id: number, text: any): Observable<any> {
+    return this.http.patch(`${API}gophs/${id}`, text);
+  }
 }

@@ -9,13 +9,17 @@ import {repeat} from 'rxjs/operators';
   styleUrls: ["./timeline.component.scss"],
 })
 export class TimelineComponent implements OnInit,OnDestroy {
-  post: string = "";
+  public post: string = "";
   public obj: any = {};
+  public editMode: boolean = false;
+  public selectedItemId: number;
+  public countStringSize: number = 290;
   posts = [];
 
   private getGophsSubscription: Subscription;
   private postGophSubscription: Subscription;
   private deleteGophSubscription: Subscription;
+  private editGophSubscription: Subscription;
 
   constructor(private gophsService: GophsService) {}
 
@@ -34,18 +38,23 @@ export class TimelineComponent implements OnInit,OnDestroy {
     if (this.deleteGophSubscription) {
       this.deleteGophSubscription.unsubscribe();
     }
+    if (this.editGophSubscription) {
+      this.editGophSubscription.unsubscribe();
+    }
   }
 
   onGopher() {
-    this.posts.unshift(this.post);
-    const obj = {
-      text : this.post
-    };
-    this.postGophSubscription = this.gophsService.postGoph(obj).subscribe((response) => {
-      this.getGophs();
-    }, (error) => {
-      alert(error);
-    });
+    if (this.countStringSize >= this.post.length ) {
+      const sendObject = {
+        text: this.post
+      };
+      this.postGophSubscription = this.gophsService.postGoph(sendObject).subscribe((response) => {
+        this.getGophs();
+      }, (error) => {
+        alert(error);
+      });
+      this.post = '';
+    }
   }
 
   public getGophs() {
@@ -58,5 +67,29 @@ export class TimelineComponent implements OnInit,OnDestroy {
     this.deleteGophSubscription = this.gophsService.deleteGoph(item.id).subscribe((response) => {
       this.getGophs();
     });
+  }
+
+  public editGoph(item) {
+    this.post = item.text;
+    this.editMode = true;
+    this.selectedItemId = item.id;
+  }
+
+  public onEditGoph() {
+    if (this.countStringSize >= this.post.length ) {
+      const sendObject = {
+        text: this.post
+      };
+      this.editGophSubscription = this.gophsService.editGoph(this.selectedItemId, sendObject).subscribe((response) => {
+        this.getGophs();
+        this.cancelEditGoph();
+      });
+    }
+  }
+
+  public cancelEditGoph() {
+    this.post = '';
+    this.selectedItemId = null;
+    this.editMode = false;
   }
 }

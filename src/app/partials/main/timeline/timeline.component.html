@@ -6,13 +6,18 @@
     rows="2"
   ></textarea>
   <div class="row px-3">
-    <button
-      (click)="onGopher()"
-      type="button"
-      class="ml-auto btn my-1 mr-1 px-4"
-    >
+    <span [ngClass]="{'text-danger': post.length > countStringSize}" class="text-success">{{post.length}}/{{countStringSize}}</span>
+    <button (click)="onGopher()" type="button" class="ml-auto btn my-1 mr-1 px-4" *ngIf="!editMode">
       Submit
     </button>
+    <span *ngIf="editMode" class="ml-auto">
+    <button  type="button" class="btn my-1 mr-2 px-4" (click)="cancelEditGoph()">
+      Cancel
+    </button>
+      <button type="button" class="btn my-1 mr-1 px-4" (click)="onEditGoph()">
+      Edit
+    </button>
+    </span>
   </div>
 </div>
 
@@ -38,7 +43,7 @@
           <a class="" (click)="deleteGoph(postItem)">
             <i class="fas fa-trash-alt"></i> Delete</a
           >
-          <a class="" (click)="deleteGoph(postItem)">
+          <a class="" (click)="editGoph(postItem)">
             <i class="fas fa-edit "></i> Update</a
           >
         </div>
