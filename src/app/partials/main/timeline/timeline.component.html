@@ -3,7 +3,7 @@
     class="form-control"
     placeholder="What's Happening?"
     [(ngModel)]="post"
-    rows="2"
+    rows="4"
   ></textarea>
   <div class="row px-3">
     <span [ngClass]="{'text-danger': post.length > countStringSize}" class="text-success">{{post.length}}/{{countStringSize}}</span>
