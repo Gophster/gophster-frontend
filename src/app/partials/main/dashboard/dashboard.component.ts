@@ -14,8 +14,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.obj = jwtDecode(localStorage.getItem("access_token"));
-
-    console.log(this.obj);
   }
 
   public onLogOut() {

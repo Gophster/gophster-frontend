@@ -56,11 +56,13 @@ h6 {
   color: rgb(179, 135, 89);
 }
 .dropdown-menu {
-  height: 30px;
+  max-height: max-content;
+  max-width: max-content;
   background-color: rgb(246, 246, 203);
   color: rgb(179, 135, 89);
   border-radius: 12px;
   a {
+    display: block;
     text-align: center;
   }
   box-shadow: 1px 1px rgb(164, 108, 60);
