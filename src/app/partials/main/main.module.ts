@@ -9,6 +9,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { TimelineComponent } from "./timeline/timeline.component";
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component
     FormsModule,
     DashboardModule,
     RouterModule.forChild(routes),
+    InfiniteScrollModule
   ],
   declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent],
   exports: [MainComponent],

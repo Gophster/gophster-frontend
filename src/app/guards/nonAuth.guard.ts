@@ -8,10 +8,8 @@ export class NonAuthGuard implements CanActivate {
 
   public canActivate(): boolean {
     if (window.localStorage.length === 0) {
-      console.log(1);
       return true;
     }
-    console.log(2);
     this.router.navigate(['/dashboard']);
     return false;
     }
