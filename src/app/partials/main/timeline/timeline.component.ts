@@ -1,20 +1,20 @@
 import {Component, OnDestroy, OnInit, HostListener} from '@angular/core';
-import jwtDecode from "jwt-decode";
+import jwtDecode from 'jwt-decode';
 import {GophsService} from '../../../services/gophs/gophs.service';
 import {Subscription} from 'rxjs';
 import {repeat} from 'rxjs/operators';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 @Component({
-  selector: "app-timeline",
-  templateUrl: "./timeline.component.html",
-  styleUrls: ["./timeline.component.scss"],
+  selector: 'app-timeline',
+  templateUrl: './timeline.component.html',
+  styleUrls: ['./timeline.component.scss'],
 })
-export class TimelineComponent implements OnInit,OnDestroy {
-  public post: string = "";
+export class TimelineComponent implements OnInit, OnDestroy {
+  public post = '';
   public obj: any = {};
-  public editMode: boolean = false;
+  public editMode = false;
   public selectedItemId: number;
-  public countStringSize: number = 290;
+  public countStringSize = 290;
   public queryParams = {
     currentPage: 2,
     totalPages: null
@@ -40,7 +40,7 @@ export class TimelineComponent implements OnInit,OnDestroy {
   constructor(private gophsService: GophsService) {}
 
   ngOnInit(): void {
-    this.obj = jwtDecode(localStorage.getItem("access_token"));
+    this.obj = jwtDecode(localStorage.getItem('access_token'));
     this.getGophs();
   }
 
@@ -85,7 +85,8 @@ export class TimelineComponent implements OnInit,OnDestroy {
 
   public deleteGoph(item: any) {
     this.deleteGophSubscription = this.gophsService.deleteGoph(item.id).subscribe((response) => {
-      this.getGophs();
+      const deletedGoph = this.posts.find(goph => goph.id === item.id);
+      this.posts = this.posts.filter(goph => goph.id !== item.id);
     });
   }
 
@@ -105,10 +106,10 @@ export class TimelineComponent implements OnInit,OnDestroy {
         editedGoph.text = response.text;
         this.cancelEditGoph();
         Swal.fire({
-          title: "",
-          text: "The Goph has successfuly updated",
-          icon: "success",
-          confirmButtonColor: "rgb(171, 119, 75)",
+          title: '',
+          text: 'The Goph has successfuly updated',
+          icon: 'success',
+          confirmButtonColor: 'rgb(171, 119, 75)',
           timer: 3000,
         });
       });

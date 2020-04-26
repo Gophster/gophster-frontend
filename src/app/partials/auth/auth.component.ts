@@ -1,25 +1,25 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { ICONS, IMAGES } from "../../utils";
-import { NgForm } from "@angular/forms";
-import { Subscription } from "rxjs";
-import { AuthService } from "../../services/auth/auth.service";
-import {StateService} from "../../services/state/state.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ICONS, IMAGES } from '../../utils';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth/auth.service';
+import {StateService} from '../../services/state/state.service';
 import jwtDecode from 'jwt-decode';
 
 @Component({
-  templateUrl: "./auth.component.html",
-  styleUrls: ["./auth.component.scss"]
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit, OnDestroy {
   public iconPath: string = ICONS;
   public imagePath: string = IMAGES;
   public user: any = {
-    login: "",
-    password: ""
+    login: '',
+    password: ''
   };
-  public errorDisplay: boolean = false;
-  public errorText: string = "";
+  public errorDisplay = false;
+  public errorText = '';
   public registrired: boolean;
 
   private loginSubscription: Subscription;
@@ -37,10 +37,10 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.stateService.registrired = false;
   }
   public onResetClick() {
-    this.router.navigate(["/resetpwd"]);
+    this.router.navigate(['/resetpwd']);
   }
   public onRegisterClick() {
-    this.router.navigate(["/register"]);
+    this.router.navigate(['/register']);
   }
   public login(f: NgForm) {
     this.loginSubscription = this.authService.loginRequest(this.user).subscribe(
@@ -51,7 +51,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       },
       (error) => {
         this.errorDisplay = true;
-        this.errorText = "Invalid Credentials!";
+        this.errorText = 'Invalid Credentials!';
       }
     );
 }

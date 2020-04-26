@@ -4,7 +4,7 @@ import { ICONS, IMAGES } from '../../utils';
 import { NgForm } from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {RegistrationService} from '../../services';
-import {StateService} from "../../services/state/state.service";
+import {StateService} from '../../services/state/state.service';
 
 
 @Component({
@@ -14,14 +14,14 @@ import {StateService} from "../../services/state/state.service";
 export class RegistrationComponent implements OnInit, OnDestroy {
   public iconPath: string = ICONS;
   public imagePath: string = IMAGES;
-  public handleErrorText: string = '';
-  public emailErrorText: string = '';
-  public passwordErrorText: string  = '';
-  public confirmPassErrorText: string = '';
-  public emailInpErr: boolean = false;
-  public handleInpErr: boolean = false;
-  public passInpErr: boolean = false;
-  public confPassInpErr: boolean = false;
+  public handleErrorText = '';
+  public emailErrorText = '';
+  public passwordErrorText  = '';
+  public confirmPassErrorText = '';
+  public emailInpErr = false;
+  public handleInpErr = false;
+  public passInpErr = false;
+  public confPassInpErr = false;
   public password2 = '';
   public user: any = {
     email: '',

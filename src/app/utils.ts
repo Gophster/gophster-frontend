@@ -4,8 +4,8 @@ declare global {
   }
 }
 
-export const API: string = 'http://api.gophster.localhost/';
+export const API = 'http://api.gophster.localhost/';
 
 
-export const ICONS: string = 'assets/svg_icons/';
-export const IMAGES: string = 'assets/images/';
+export const ICONS = 'assets/svg_icons/';
+export const IMAGES = 'assets/images/';
