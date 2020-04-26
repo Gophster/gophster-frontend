@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 import {GophsService} from '../../../services/gophs/gophs.service';
 import {Subscription} from 'rxjs';
 import {repeat} from 'rxjs/operators';
+import Swal from "sweetalert2";
 @Component({
   selector: "app-timeline",
   templateUrl: "./timeline.component.html",
@@ -100,8 +101,16 @@ export class TimelineComponent implements OnInit,OnDestroy {
         text: this.post
       };
       this.editGophSubscription = this.gophsService.editGoph(this.selectedItemId, sendObject).subscribe((response) => {
-        this.getGophs();
+        const editedGoph = this.posts.find(item => item.id === response.id);
+        editedGoph.text = response.text;
         this.cancelEditGoph();
+        Swal.fire({
+          title: "",
+          text: "The Goph has successfuly updated",
+          icon: "success",
+          confirmButtonColor: "rgb(171, 119, 75)",
+          timer: 3000,
+        });
       });
     }
   }
