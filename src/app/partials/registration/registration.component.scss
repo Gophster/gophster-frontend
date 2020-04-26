@@ -1,0 +1,79 @@
+.leftside,
+.rightside {
+  height: 100vh;
+  width: 100%;
+}
+.container-fluid {
+  width: 100%;
+  padding: 0px 0px 0px 0px;
+}
+
+.leftside {
+  background-color: rgb(255, 252, 189);
+}
+.rightside {
+  line-height: rem;
+}
+label {
+  color: rgb(171, 119, 75);
+}
+input,
+button {
+  border-radius: 150px !important;
+  outline: none !important;
+}
+input {
+  background-color: rgb(243, 242, 201);
+  outline: none !important;
+}
+input:focus {
+  box-shadow: none;
+  outline: none !important;
+}
+.btn {
+  background-color: rgb(164, 108, 60);
+  color: white;
+  &:hover {
+    background-color: rgb(132, 80, 40);
+  }
+  &:active {
+    background-color: rgb(85, 59, 56);
+    border-color: black;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+a {
+  cursor: pointer;
+  color: rgb(85, 59, 56);
+  text-decoration: underline;
+  &:hover {
+    color: rgb(132, 80, 40);
+  }
+}
+// @media only screen and (max-width: 992) {
+//   #tohide {
+//     display: none;
+//   }
+// }
+
+p {
+  font-family: "Lobster", "Microsoft JhengHei UI";
+}
+#signup {
+  width: 50%;
+}
+#signupdiv {
+  line-height: 5rem;
+}
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: rgb(171, 119, 75);
+}
+
+.h4 {
+  color: rgb(171, 119, 75);
+}

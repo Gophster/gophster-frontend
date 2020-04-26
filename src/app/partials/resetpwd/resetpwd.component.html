@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row no-gutters align-ites-center">
+    <div class="col-md-8 d-none d-md-block">
+      <div class="leftside text-center">
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center">
+            <img
+              [src]="imagePath + 'logo.PNG'"
+              alt=""
+              class="img-fluid img-responsive .hidden-md-down logo"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-12">
+      <div class="rightside my-auto text-center">
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center">
+            <form class="col-10" >
+              <h5 class="h5">Trouble Logging In?</h5>
+              <br />
+              <h5 class="h5">
+                Enter your email and we'll send you a link to get back into your
+                account.
+              </h5>
+              <div class="form-group my-md-4 my-sm-4 my-xs-1">
+                <label for="email">Email address:</label>
+                <input
+                  type="email"
+                  required
+                  class="form-control"
+                  [(ngModel)]="user.email"
+                  name="email"
+                  #email="ngModel"
+                  (blur)="validateEmail()"
+                  (keydown)="validateEmailKeyCode()"
+                  [ngStyle]="{
+                    border: this.emailInpErr ? '2px solid red' : ''
+                  }"
+                  autocomplete="off"
+                />
+                <span class="text-danger" *ngIf="emailInpErr">{{
+                  emailErrorText
+                }}</span>
+              </div>
+
+              <div class="form-group my-md-5 my-sm-4 my-xs-1">
+                <button
+
+                  (click)="onSubmit()"
+                  type="button"
+                  class="btn btn-lg btn-block"
+                >
+                  Submit
+                </button>
+              </div>
+              <div class="h5 pt-5">
+                <a (click)="onBackToLogin()">Back To Login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

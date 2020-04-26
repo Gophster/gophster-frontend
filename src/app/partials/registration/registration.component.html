@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="row no-gutters align-ites-center ">
+    <div class="col-md-8  d-none d-md-block">
+      <div class="leftside text-center">
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center ">
+            <img
+              [src]="imagePath + 'logo.PNG'"
+              alt=""
+              class="img-fluid img-responsive  .hidden-md-down logo"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4  col-12 ">
+      <div class="rightside my-auto text-center">
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center ">
+            <form class="col-10" #f="ngForm" (ngSubmit)="login(f)">
+              <div class="container">
+                <div class="form-group my-md-4 my-sm-4 my-xs-1">
+                  <label for="handle">Handle</label>
+                  <input
+                    type="text"
+                    required
+                    class="form-control "
+                    required
+                    [(ngModel)]="user.handle"
+                    name="handle"
+                    #handle="ngModel"
+                    minlength="2"
+                    maxlength="25"
+                    (blur)="validateHandle()"
+                    (keydown)="validateHandleKey()"
+                    [ngStyle]="{'border' : this.handleInpErr? '2px solid red': ''}"
+                    autocomplete="off"
+                  />
+                  <span class="text-danger" *ngIf="handleInpErr">{{handleErrorText}}</span>
+                </div>
+                <div class="form-group  my-md-4 my-sm-4 my-xs-1">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    required
+                    class="form-control "
+                    [(ngModel)]="user.email"
+                    name="email"
+                    #email="ngModel"
+                    (blur)="validateEmail()"
+                    (keydown)="validateEmailKeyCode()"
+                    [ngStyle]="{'border' : this.emailInpErr? '2px solid red': ''}"
+                    autocomplete="off"
+                  />
+                  <span class="text-danger" *ngIf="emailInpErr">{{emailErrorText}}</span>
+                </div>
+                <div class="form-group my-md-4 my-sm-4 my-xs-1">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    required
+                    class="form-control"
+                    [(ngModel)]="user.password"
+                    name="password"
+                    #password="ngModel"
+                    minlength="8"
+                    maxlength="35"
+                    (blur)="validatePassword()"
+                    (keydown)="validatePasswordKey()"
+                    [ngStyle]="{'border' : this.passInpErr? '2px solid red': ''}"
+                    autocomplete="off"
+                  />
+                  <span class="text-danger" *ngIf="passInpErr">{{passwordErrorText}}</span>
+                </div>
+                <div
+                  class="form-group justify-content-center align-items-center my-md-4 my-sm-4 my-xs-1"
+                >
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    required
+                    class="form-control"
+                    [(ngModel)]="user.confirmPassword"
+                    name="confirmPassword"
+                    #confirmPassword="ngModel"
+                    minlength="8"
+                    maxlength="35"
+                    (blur)="validateConfirmPassword()"
+                    (keydown)="validateConfirmPasswordKey()"
+                    [ngStyle]="{'border' : this.confPassInpErr? '2px solid red': ''}"
+                    autocomplete="off"
+                  />
+                  <span class="text-danger" *ngIf="confPassInpErr">{{confirmPassErrorText}}</span>
+                </div>
+
+                <div class="form-group my-md-5 my-sm-4 my-xs-1">
+                  <!-- <p *ngIf="errorDisplay">{{ this.errorText }}</p> -->
+                  <button type="submit" class="btn btn-lg btn-block">
+                    Sign up
+                  </button>
+                  <!--          <button (click)="onRegisterClick()" style="background-color: darkblue">Sign Up</button>-->
+                </div>
+              </div>
+            </form>
+            <div class="h5 mb-5">
+              Already have an account?
+              <a (click)="onLogin()">Log In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<ul class="nav sticky-top flex-column">
+  <!-- <span style="font-size: 26px;">{{ obj.handle }}</span> -->
+
+  <li class="nav-item">
+    <a class="nav-link active h4"><i class="fas fa-home"></i> Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link h4"><i class="fas fa-bell"></i> Notification</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link h4"><i class="fas fa-envelope"></i> Message</a>
+  </li>
+  <li class="nav-item">
+    <a (click)="NavigateToProfile()" class="nav-link h4"
+      ><i class="fas fa-user"></i> Profile</a
+    >
+  </li>
+  <li class="nav-item">
+    <a (click)="onLogOut()" class="nav-link h4" href="#"
+      ><i class="fas fa-sign-out-alt"></i> Log Out</a
+    >
+  </li>
+</ul>
