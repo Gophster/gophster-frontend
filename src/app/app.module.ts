@@ -15,6 +15,7 @@ import { MainComponent } from "./partials/main/main.component";
 import { MainModule } from "./partials/main";
 import {TokenInterceptor} from './interceptors/interceptor';
 import {GophsService} from './services/gophs/gophs.service';
+import { ProfileComponent } from './partials/profile/profile.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {GophsService} from './services/gophs/gophs.service';
     AuthComponent,
     RegistrationComponent,
     ResetpwdComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

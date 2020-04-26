@@ -9,6 +9,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { TimelineComponent } from "./timeline/timeline.component";
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component
     DashboardModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent],
+  declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent, UserComponent],
   exports: [MainComponent],
   providers: [AuthGuard],
 })

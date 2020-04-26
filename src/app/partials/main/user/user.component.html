@@ -1,0 +1,85 @@
+<div class="container post py-2">
+  <div class="row">
+    <div class="col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <img
+        src="../../../../assets/images/logo-small.png"
+        class="rounded-circle img-fluid img-thumbnail py-2"
+        alt="Cinque Terre"
+      />
+    </div>
+    <div class="col-5 col-xs-5 col-sm-5 col-md-5 col-lg-5 py-3">
+      <span>
+        <h5>Gophster Gophster</h5>
+        <h6>{{ obj.handle }}</h6>
+      </span>
+      <span
+        ><i class="fas fa-map-marker-alt"></i> Georgia
+        <i class="fas fa-gift"> 01/01/1999</i>
+      </span>
+    </div>
+    <div class="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <a id="modal " data-toggle="modal" data-target="#exampleModalCenter">
+        <i class="fas fa-cog"></i> Edit Profile
+      </a>
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="form-group my-md-4 my-sm-4 my-xs-1">
+                <label for="handle">Name</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  required
+                  name="handle"
+                />
+              </div>
+              <div class="form-group my-md-3 my-sm-4 my-xs-1">
+                <label for="password">Location</label>
+                <input
+                  type="password"
+                  required
+                  class="form-control form-control-lg"
+                  name="password"
+                />
+              </div>
+              <div class="form-group my-md-3 my-sm-4 my-xs-1">
+                <label for="password">Birth Date</label>
+                <input
+                  type="password"
+                  required
+                  class="form-control form-control-lg"
+                  name="password"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row px-3"></div> -->
+</div>
+
+<div class="container display-post mt-2">
+  <div class="row"></div>
+</div>
