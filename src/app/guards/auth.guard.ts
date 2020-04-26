@@ -8,10 +8,8 @@ export class AuthGuard implements CanActivate {
 
   public canActivate(): boolean {
     if (localStorage.getItem('access_token')) {
-      console.log(3);
       return true;
     }
-    console.log(4);
     this.router.navigate(['/auth']);
     return false;
   }

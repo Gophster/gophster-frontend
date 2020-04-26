@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, HostListener} from '@angular/core';
 import jwtDecode from "jwt-decode";
 import {GophsService} from '../../../services/gophs/gophs.service';
 import {Subscription} from 'rxjs';
@@ -14,12 +14,27 @@ export class TimelineComponent implements OnInit,OnDestroy {
   public editMode: boolean = false;
   public selectedItemId: number;
   public countStringSize: number = 290;
-  posts = [];
+  public queryParams = {
+    currentPage: 2,
+    totalPages: null
+  };
+  public posts = [];
 
   private getGophsSubscription: Subscription;
   private postGophSubscription: Subscription;
   private deleteGophSubscription: Subscription;
   private editGophSubscription: Subscription;
+
+
+  onScroll() {
+    history.scrollRestoration = 'manual';
+    if (this.queryParams.currentPage <= this.queryParams.totalPages) {
+      this.getGophs(`?page=${this.queryParams.currentPage}`);
+      this.queryParams.currentPage++;
+    }
+  }
+
+
 
   constructor(private gophsService: GophsService) {}
 
@@ -49,7 +64,7 @@ export class TimelineComponent implements OnInit,OnDestroy {
         text: this.post
       };
       this.postGophSubscription = this.gophsService.postGoph(sendObject).subscribe((response) => {
-        this.getGophs();
+        this.posts.unshift(response);
       }, (error) => {
         alert(error);
       });
@@ -57,9 +72,13 @@ export class TimelineComponent implements OnInit,OnDestroy {
     }
   }
 
-  public getGophs() {
-    this.getGophsSubscription = this.gophsService.getGoph().subscribe((response) => {
-      this.posts = response;
+  public getGophs(params?: any) {
+    this.getGophsSubscription = this.gophsService.getGoph(params).subscribe((response) => {
+      this.posts.push(... response.items);
+      this.queryParams.totalPages = response.meta.totalPages;
+      // this.queryParams.next = response.links.next.substr(response.links.next.indexOf('?'), response.links.next.length);
+      // this.queryParams.last = response.links.last.substr(response.links.last.indexOf('?'), response.links.last.length);
+
     });
   }
 

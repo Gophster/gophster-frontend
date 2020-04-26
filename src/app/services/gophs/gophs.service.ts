@@ -17,8 +17,12 @@ export class GophsService {
     return this.http.post(`${API}gophs`, obj);
   }
 
-  public getGoph(): Observable<any> {
-    return this.http.get(`${API}gophs`);
+  public getGoph(params?: any): Observable<any> {
+    if (params) {
+      return this.http.get(`${API}gophs${params}`);
+    } else {
+      return this.http.get(`${API}gophs?limit=10`);
+    }
   }
 
   public deleteGoph(id: number): Observable<any> {
