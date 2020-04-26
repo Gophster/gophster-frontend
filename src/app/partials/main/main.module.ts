@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     RouterModule.forChild(routes),
     InfiniteScrollModule
   ],
-  declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent],
+  declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent, UserComponent],
   exports: [MainComponent],
   providers: [AuthGuard],
 })

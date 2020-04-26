@@ -6,6 +6,7 @@ import { ResetpwdComponent } from './partials/resetpwd/resetpwd.component';
 import {DashboardComponent} from './partials/main/dashboard/dashboard.component';
 import {AuthGuard, NonAuthGuard} from './guards';
 
+
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegistrationComponent, canActivate: [NonAuthGuard] },

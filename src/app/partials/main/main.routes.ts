@@ -6,7 +6,8 @@ export const routes: any[] = [
   {
     path : '', component: MainComponent, canActivate: [AuthGuard], children: [
       {path : '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent}
+      {path: 'dashboard', component: DashboardComponent},
+     
     ]
   }
 ];
