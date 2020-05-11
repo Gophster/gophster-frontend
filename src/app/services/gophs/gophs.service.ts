@@ -25,6 +25,14 @@ export class GophsService {
     }
   }
 
+  public getProfileGoph(handle: any, params?: any): Observable<any> {
+    if (params) {
+      return this.http.get(`${API}gophs/user/${handle}${params}`);
+    } else {
+      return this.http.get(`${API}gophs/user/${handle}?limit=10`);
+    }
+  }
+
   public deleteGoph(id: number): Observable<any> {
     return this.http.delete(`${API}gophs/${id}`);
   }

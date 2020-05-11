@@ -107,7 +107,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
         this.cancelEditGoph();
         Swal.fire({
           title: '',
-          text: 'The Goph has successfuly updated',
+          text: 'The Goph has successfully updated',
           icon: 'success',
           confirmButtonColor: 'rgb(171, 119, 75)',
           timer: 3000,

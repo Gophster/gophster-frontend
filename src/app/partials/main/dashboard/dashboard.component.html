@@ -2,7 +2,7 @@
   <!-- <span style="font-size: 26px;">{{ obj.handle }}</span> -->
 
   <li class="nav-item">
-    <a class="nav-link active h4"><i class="fas fa-home"></i> Home</a>
+    <a class="nav-link active h4" (click)="onHomeRedirect()"><i class="fas fa-home"></i> Home</a>
   </li>
   <li class="nav-item">
     <a class="nav-link h4"><i class="fas fa-bell"></i> Notification</a>
@@ -11,7 +11,7 @@
     <a class="nav-link h4"><i class="fas fa-envelope"></i> Message</a>
   </li>
   <li class="nav-item">
-    <a (click)="NavigateToProfile()" class="nav-link h4"
+    <a (click)="onProfileRedirect()" class="nav-link h4"
       ><i class="fas fa-user"></i> Profile</a
     >
   </li>
