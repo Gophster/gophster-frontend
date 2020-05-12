@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable()
 export class NonAuthGuard implements CanActivate {
@@ -9,7 +9,7 @@ export class NonAuthGuard implements CanActivate {
     if (window.localStorage.length === 0) {
       return true;
     }
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['']);
     return false;
   }
 }

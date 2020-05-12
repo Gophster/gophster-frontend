@@ -16,6 +16,7 @@ import { MainModule } from './partials/main';
 import {TokenInterceptor} from './interceptors/interceptor';
 import {GophsService} from './services/gophs/gophs.service';
 import { ProfileComponent } from './partials/profile/profile.component';
+import {UserService} from './services/user/user.service';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ProfileComponent } from './partials/profile/profile.component';
     RegistrationService,
     StateService,
     GophsService,
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

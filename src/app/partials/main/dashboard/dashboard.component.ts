@@ -21,9 +21,11 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/auth']);
   }
 
-  public NavigateToProfile() {
-    this.router.navigate(["/profile"]);
-    
-    
+  public onProfileRedirect() {
+    this.router.navigate(['/user']);
+  }
+
+  public onHomeRedirect() {
+    this.router.navigate(['']);
   }
 }
