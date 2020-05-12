@@ -31,7 +31,7 @@ export class UserService {
     if (data.avatar && data.fileName) {
       formData.append('avatar', data.avatar, data.fileName);
     }
-    console.log(data)
+    console.log(data);
 
     const headers: HttpHeaders = new HttpHeaders({enctype: 'multipart/form-data'});
     return this.http.post(`${API}user/profile`, formData, {headers});
