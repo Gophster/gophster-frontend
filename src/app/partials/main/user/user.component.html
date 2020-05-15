@@ -3,118 +3,61 @@
     <div class="col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <img
         src="{{ user.avatar }}"
-        class="rounded-circle img-fluid border border-secondary rounded-circle py-2"
+        class="rounded-circle img-thumbnail img-responsive py-2"
         alt="Cinque Terre"
       />
     </div>
     <div class="col-5 col-xs-5 col-sm-5 col-md-5 col-lg-5 py-3">
       <span>
         <h5>{{ user.name }}</h5>
-        <h6 class="h5">@{{ handle }}</h6>
+        <h6 class="h5">@{{ user.handle }}</h6>
       </span>
-      <span>
-        <i class="fas fa-map-marker-alt mr-1" *ngIf="user.location"></i
-        >{{ user.location }}
-        <br />
-        <i class="fas fa-gift mr-1" *ngIf="user.birthdate"></i>{{ birthDate }}
-      </span>
+      <button class="btn mt-4 follow" *ngIf="routeParam && routeParam !== mainHandle && !followButton" (click)="onFollow()">Follow</button>
+      <button class="btn mt-4 unfollow" *ngIf="routeParam && routeParam !== mainHandle && followButton" (click)="onUnfollow()">Unfollow</button>
     </div>
     <div class="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <a id="modal " data-toggle="modal" data-target="#profileEdit">
-        <i class="fas fa-cog"></i> Edit Profile
+        <span class="d-none d-md-inline">
+          <i class="fas fa-cog"></i> Edit Profile
+        </span>
+        <span class="d-md-none">
+          <i class="float-right mt-2 fas fa-lg fa-cog"></i>
+        </span>
       </a>
-      <div
-        class="modal fade"
-        id="profileEdit"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="profileEditTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <form>
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="form-group my-md-4 my-sm-4 my-xs-1">
-                  <label for="name">Name</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    name="name"
-                    id="name"
-                    [(ngModel)]="obj.name"
-                  />
-                </div>
-                <div class="form-group my-md-3 my-sm-4 my-xs-1">
-                  <label for="location">Location</label>
-                  <input
-                    type="location"
-                    id="location"
-                    class="form-control form-control-lg"
-                    name="location"
-                    [(ngModel)]="obj.location"
-                  />
-                </div>
-                <div class="form-group my-md-3 my-sm-4 my-xs-1">
-                  <label for="birthdate">Birth Date</label>
-                  <input
-                    type="date"
-                    id="birthdate"
-                    class="form-control form-control-lg"
-                    name="birth-date"
-                    [(ngModel)]="birthDate"
-                    (change)="onDateChoose($event)"
-                  />
-                </div>
-                <div class="form-group my-md-3 my-sm-4 my-xs-1">
-                  <label class="file-label"
-                    >Avatar
-                    <input
-                      class="file-input"
-                      type="file"
-                      name="resume"
-                      (change)="fileChange($event)"
-                    />
-                    <span class="file-cta">
-                      <span class="file-icon">
-                        <i class="fas fa-upload"></i>
-                      </span>
-                      <span class="file-label">
-                        Choose a file…
-                      </span>
-                    </span>
-                  </label>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  (click)="sendData()"
-                >
-                  Save
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
   </div>
+  <hr />
+  <div class="row mt-3">
+    <span class="ml-4 mr-3">
+      <i class="fas fa-map-marker-alt mr-1" *ngIf="user.location"></i
+      >{{ user.location }}</span
+    >
+    <span clsss="ml-3">
+      <i class="fas fa-gift mr-1" *ngIf="user.birthdate"></i>{{ birthDate }}
+    </span>
+    <span class="ml-3">
+      <i class="fas fa-user-friends"></i>
+      <span class="d-none d-md-inline">
+        Followers:
+      </span>
+      {{this.user.followersAmount}}
+    </span>
+    <span class="ml-3">
+      <i class="fas fa-lg fa-running"></i>
+        <span class="d-none d-md-inline">
+          Following:
+        </span>
+       {{this.user.followingAmount}}
+    </span>
+  </div>
+
   <!-- <div class="row px-3"></div> -->
 </div>
 
 <div *ngFor="let postItem of posts" class="container display-post mt-2">
   <div class="row">
     <div class="col-10 col-xs-11 col-sm-11 col-md-11 col-lg-11">
-      <h6 class="h6 mt-2">@{{ handle }}</h6>
+      <h6 class="h6 mt-2">@{{ user.handle }}</h6>
       <span class="pr-1">
         {{ postItem.text }}
       </span>
@@ -127,3 +70,79 @@
   [infiniteScrollThrottle]="1000"
   (scrolled)="onScroll()"
 ></div>
+
+<!-- MODAL -->
+<div
+  class="modal fade"
+  id="profileEdit"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="profileEditTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <form>
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="form-group my-md-4 my-sm-4 my-xs-1">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              name="name"
+              id="name"
+              [(ngModel)]="obj.name"
+            />
+          </div>
+          <div class="form-group my-md-3 my-sm-4 my-xs-1">
+            <label for="location">Location</label>
+            <input
+              type="location"
+              id="location"
+              class="form-control form-control-lg"
+              name="location"
+              [(ngModel)]="obj.location"
+            />
+          </div>
+          <div class="form-group my-md-3 my-sm-4 my-xs-1">
+            <label for="birthdate">Birth Date</label>
+            <input
+              type="date"
+              id="birthdate"
+              class="form-control form-control-lg"
+              name="birth-date"
+              [(ngModel)]="birthDate"
+              (change)="onDateChoose($event)"
+            />
+          </div>
+          <div class="form-group my-md-3 my-sm-4 my-xs-1">
+            <label class="file-label">Avatar
+              <input
+                class="file-input"
+                type="file"
+                name="resume"
+                (change)="fileChange($event)"
+              />
+              <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        Choose a file…
+                      </span>
+                    </span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary" (click)="sendData()">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

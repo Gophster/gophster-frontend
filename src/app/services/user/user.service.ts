@@ -35,4 +35,16 @@ export class UserService {
     const headers: HttpHeaders = new HttpHeaders({enctype: 'multipart/form-data'});
     return this.http.post(`${API}user/profile`, formData, {headers});
   }
+
+  public isFollowing(handle): Observable<any> {
+    return this.http.post(`${API}actions/isfollowing`, handle);
+  }
+
+  public followUser(handle): Observable<any> {
+    return this.http.post(`${API}actions/follow`, handle);
+  }
+
+  public unfollowUser(handle): Observable<any> {
+    return this.http.post(`${API}actions/unfollow`, handle);
+  }
 }

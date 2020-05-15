@@ -19,21 +19,30 @@ export class UserComponent implements OnInit, OnDestroy {
   };
   public posts = [];
   public user: {
+    handle: string;
     name: string;
     avatar: string | any;
     birthdate: string;
     location: string;
     fileName: string;
-  } = { name: '', avatar: null, fileName: '', birthdate: '', location: '' };
+    followersAmount: number;
+    followingAmount: number;
+  } = { handle: '', name: '', avatar: null, fileName: '', birthdate: '', location: '', followersAmount: null, followingAmount: null };
   public obj: {
+    handle: string;
     name: string;
     avatar: string | any;
     birthdate: string;
     location: string;
     fileName: string;
-  } = { name: '', avatar: null, fileName: '', birthdate: '', location: '' };
+    followersAmount: number;
+    followingAmount: number;
+  } = { handle: '', name: '', avatar: null, fileName: '', birthdate: '', location: '', followersAmount: null, followingAmount: null,  };
+  public followButton: boolean;
   public birthDate: string;
-  public handle: string;
+  public mainHandle: string;
+  public routeParam: string;
+  public blah;
 
   constructor(
     private userService: UserService,
@@ -45,15 +54,20 @@ export class UserComponent implements OnInit, OnDestroy {
   private getProfileGophsSubscription: Subscription;
   private postUserDataSubscription: Subscription;
   private getGophsSubscription: Subscription;
+  private followUserSubscription: Subscription;
+  private unfollowUserSubscription: Subscription;
+  private isFollowingSubscription: Subscription;
 
   ngOnInit(): void {
-    this.handle = jwtDecode(localStorage.getItem('access_token')).handle;
-    const routeParam = this.route.snapshot.params.id;
-    if (routeParam) {
-      this.getUserData(routeParam);
-      this.getProfileGoph(routeParam);
+    this.mainHandle = jwtDecode(localStorage.getItem('access_token')).handle;
+    this.routeParam = this.route.snapshot.params.id;
+    this.user.handle = this.routeParam;
+    if (this.routeParam) {
+      this.getUserData(this.routeParam);
+      this.getProfileGoph(this.routeParam);
+      this.isFollowing();
     } else {
-      this.getUserData(this.handle);
+      this.getUserData(this.mainHandle);
       this.getGophs();
     }
   }
@@ -65,6 +79,21 @@ export class UserComponent implements OnInit, OnDestroy {
     if (this.getProfileGophsSubscription) {
       this.getProfileGophsSubscription.unsubscribe();
     }
+    if (this.getGophsSubscription) {
+      this.getGophsSubscription.unsubscribe();
+    }
+    if (this.postUserDataSubscription) {
+      this.postUserDataSubscription.unsubscribe();
+    }
+    if (this.followUserSubscription) {
+      this.followUserSubscription.unsubscribe();
+    }
+    if (this.unfollowUserSubscription) {
+      this.unfollowUserSubscription.unsubscribe();
+    }
+    if (this.isFollowingSubscription) {
+      this.isFollowingSubscription.unsubscribe();
+    }
   }
 
   public getUserData(handle: any) {
@@ -72,7 +101,7 @@ export class UserComponent implements OnInit, OnDestroy {
       .getUserData(handle)
       .subscribe((response) => {
         this.user = response;
-        this.handle = response.handle;
+        // this.obj.handle = response.handle;
         this.obj.name = this.user.name;
         this.obj.location = this.user.location;
         this.obj.avatar = this.user.avatar;
@@ -86,7 +115,7 @@ export class UserComponent implements OnInit, OnDestroy {
     this.postUserDataSubscription = this.userService
       .postUserData(this.obj)
       .subscribe((response) => {
-        this.getUserData(this.handle);
+        this.getUserData(this.mainHandle);
         Swal.fire({
           title: '',
           text: 'The Profile has been successfully updated',
@@ -132,6 +161,29 @@ export class UserComponent implements OnInit, OnDestroy {
       });
   }
 
+  public onFollow() {
+    const sendHandle = { handle : this.user.handle};
+    this.followUserSubscription = this.userService.followUser(sendHandle).subscribe((response) => {
+      this.getUserData(this.routeParam);
+      this.isFollowing();
+    });
+  }
+
+  public onUnfollow() {
+    const sendHandle = { handle : this.user.handle};
+    this.unfollowUserSubscription = this.userService.unfollowUser(sendHandle).subscribe((response) => {
+      this.getUserData(this.routeParam);
+      this.isFollowing();
+    });
+  }
+
+  public isFollowing() {
+    const sendHandle = { handle : this.user.handle};
+    this.isFollowingSubscription = this.userService.isFollowing(sendHandle).subscribe((response) => {
+      this.followButton = response.data;
+    });
+  }
+
   public onScroll() {
     history.scrollRestoration = 'manual';
     if (this.queryParams.currentPage <= this.queryParams.totalPages) {
@@ -139,4 +191,5 @@ export class UserComponent implements OnInit, OnDestroy {
       this.queryParams.currentPage++;
     }
   }
+
 }
