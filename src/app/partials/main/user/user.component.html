@@ -2,20 +2,21 @@
   <div class="row">
     <div class="col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <img
-        src="{{user.avatar}}"
-        class="rounded-circle img-fluid img-thumbnail py-2"
+        src="{{ user.avatar }}"
+        class="rounded-circle img-fluid border border-secondary rounded-circle py-2"
         alt="Cinque Terre"
       />
     </div>
     <div class="col-5 col-xs-5 col-sm-5 col-md-5 col-lg-5 py-3">
       <span>
-        <h5>{{user.name}}</h5>
+        <h5>{{ user.name }}</h5>
         <h6 class="h5">@{{ handle }}</h6>
       </span>
       <span>
-        <i class="fas fa-map-marker-alt mr-1" *ngIf="user.location"></i>{{user.location}}
-        <br>
-        <i class="fas fa-gift mr-1" *ngIf="user.birthdate"></i>{{birthDate}}
+        <i class="fas fa-map-marker-alt mr-1" *ngIf="user.location"></i
+        >{{ user.location }}
+        <br />
+        <i class="fas fa-gift mr-1" *ngIf="user.birthdate"></i>{{ birthDate }}
       </span>
     </div>
     <div class="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -31,64 +32,77 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <form >
-          <div class="modal-content">
-            <div class="modal-body">
-              <div class="form-group my-md-4 my-sm-4 my-xs-1">
-                <label for="name">Name</label>
-                <input
-                  type="text"
-                  class="form-control form-control-lg"
-                  name="name"
-                  id="name"
-                  [(ngModel)]="obj.name"
-                />
+          <form>
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="form-group my-md-4 my-sm-4 my-xs-1">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    name="name"
+                    id="name"
+                    [(ngModel)]="obj.name"
+                  />
+                </div>
+                <div class="form-group my-md-3 my-sm-4 my-xs-1">
+                  <label for="location">Location</label>
+                  <input
+                    type="location"
+                    id="location"
+                    class="form-control form-control-lg"
+                    name="location"
+                    [(ngModel)]="obj.location"
+                  />
+                </div>
+                <div class="form-group my-md-3 my-sm-4 my-xs-1">
+                  <label for="birthdate">Birth Date</label>
+                  <input
+                    type="date"
+                    id="birthdate"
+                    class="form-control form-control-lg"
+                    name="birth-date"
+                    [(ngModel)]="birthDate"
+                    (change)="onDateChoose($event)"
+                  />
+                </div>
+                <div class="form-group my-md-3 my-sm-4 my-xs-1">
+                  <label class="file-label"
+                    >Avatar
+                    <input
+                      class="file-input"
+                      type="file"
+                      name="resume"
+                      (change)="fileChange($event)"
+                    />
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        Choose a file…
+                      </span>
+                    </span>
+                  </label>
+                </div>
               </div>
-              <div class="form-group my-md-3 my-sm-4 my-xs-1">
-                <label for="location">Location</label>
-                <input
-                  type="location"
-                  id="location"
-                  class="form-control form-control-lg"
-                  name="location"
-                  [(ngModel)]="obj.location"
-                />
-              </div>
-              <div class="form-group my-md-3 my-sm-4 my-xs-1">
-                <label for="birthdate">Birth Date</label>
-                <input
-                  type="date"
-                  id="birthdate"
-                  class="form-control form-control-lg"
-                  name="birth-date"
-                  [(ngModel)]="birthDate"
-                  (change)="onDateChoose($event)"
-                />
-              </div>
-              <div class="form-group my-md-3 my-sm-4 my-xs-1">
-                <label for="avatar">Avatar</label>
-                <input
-                  type="file"
-                  id="avatar"
-                  class="form-control form-control-lg"
-                  name="avatar"
-                  (change)="fileChange($event)"
-                />
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  (click)="sendData()"
+                >
+                  Save
+                </button>
               </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="submit" class="btn btn-primary" (click)="sendData()">
-                Save
-              </button>
-            </div>
-          </div>
           </form>
         </div>
       </div>
@@ -107,6 +121,9 @@
     </div>
   </div>
 </div>
-<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()" >
-
-</div>
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()"
+></div>

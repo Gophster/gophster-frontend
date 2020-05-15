@@ -7,7 +7,7 @@
 }
 textarea {
   padding: 10px;
-  color: rgb(163, 108, 60);
+  color: rgb(185, 110, 45);
   border: none;
   outline: none;
   border: none;
@@ -96,10 +96,17 @@ i {
   input {
     background-color: rgb(246, 246, 203);
     border-radius: 15px;
-    
   }
   button {
     background-color: white;
     color: rgb(163, 108, 60);
   }
+}
+
+input[type="file"] {
+
+  font-size: 17px;
+  
+  width: 100%;
+  color: rgb(163, 108, 60);
 }

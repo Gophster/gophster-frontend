@@ -1,0 +1,107 @@
+$brown: #786450;
+
+.center {
+  height: 120px;
+  width: 300px;
+  background-color: rgb(246, 246, 203);
+  border-radius: 20px;
+  box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+}
+
+
+
+.image {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 25px 0 0 15px;
+
+  .circle-1 {
+    position: absolute;
+    box-sizing: border-box;
+    width: 76px;
+    height: 76px;
+    top: -3px;
+    left: -3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $brown $brown $brown transparent;
+    border-radius: 50%;
+    transition: all 1.5s ease-in-out;
+  }
+
+  .circle-2 {
+    @extend .circle-1;
+    width: 82px;
+    height: 82px;
+    top: -6px;
+    left: -6px;
+    border-color: $brown transparent $brown $brown;
+  }
+
+  img {
+    display: block;
+    border-radius: 50%;
+    background: #f5e8df;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .circle-1 {
+      transform: rotate(360deg);
+    }
+
+    .circle-2 {
+      transform: rotate(-360deg);
+    }
+  }
+}
+.profile {
+  margin: 20px 45px 0 0;
+  .name {
+    font-size: 14px;
+    font-weight: 600;
+    //margin-top: 15px;
+  }
+
+  .handle {
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+.actions {
+  margin: 40px -33px 0 0;
+  .btn {
+    background-color: rgb(179, 135, 89);
+
+    color: white;
+    display: block;
+    width: 80px;
+    height: 30px;
+    margin: 0 auto 10px -45px;
+
+    border: 1px solid $brown;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: rgb(164, 108, 60);
+    }
+    &:active {
+      background-color: rgb(164, 108, 60);
+      border-color: black;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+ul {
+  margin: -17px 0 0 -35px;
+  line-height: 150%;
+  list-style: none;
+}
