@@ -3,7 +3,7 @@
     <div class="col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <img
         src="{{ user.avatar }}"
-        class="rounded-circle img-fluid img-thumbnail py-2"
+        class="rounded-circle img-thumbnail img-responsive py-2"
         alt="Cinque Terre"
       />
     </div>
@@ -17,7 +17,12 @@
     </div>
     <div class="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3">
       <a id="modal " data-toggle="modal" data-target="#profileEdit">
-        <i class="fas fa-cog"></i> Edit Profile
+        <span class="d-none d-md-inline">
+          <i class="fas fa-cog"></i> Edit Profile
+        </span>
+        <span class="d-md-none">
+          <i class="float-right mt-2 fas fa-lg fa-cog"></i>
+        </span>
       </a>
     </div>
   </div>
@@ -32,11 +37,17 @@
     </span>
     <span class="ml-3">
       <i class="fas fa-user-friends"></i>
-      Followers: {{this.user.followersAmount}}
+      <span class="d-none d-md-inline">
+        Followers:
+      </span>
+      {{this.user.followersAmount}}
     </span>
     <span class="ml-3">
       <i class="fas fa-lg fa-running"></i>
-      Following: {{this.user.followingAmount}}
+        <span class="d-none d-md-inline">
+          Following:
+        </span>
+       {{this.user.followingAmount}}
     </span>
   </div>
 

@@ -27,7 +27,7 @@ export class UserComponent implements OnInit, OnDestroy {
     fileName: string;
     followersAmount: number;
     followingAmount: number;
-  } = { handle: '', name: "", avatar: null, fileName: "", birthdate: "", location: "", followersAmount: null, followingAmount: null };
+  } = { handle: '', name: '', avatar: null, fileName: '', birthdate: '', location: '', followersAmount: null, followingAmount: null };
   public obj: {
     handle: string;
     name: string;
