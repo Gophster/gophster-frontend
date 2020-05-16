@@ -16,6 +16,9 @@ export class UserService {
   public getUserData(handle): Observable<any> {
     return this.http.get(`${API}user/${handle}`);
   }
+  public getUsersSuggestionData(): Observable<any> {
+    return this.http.get(`${API}actions/suggestions`);
+  }
 
   public postUserData(data): Observable<any> {
     const formData = new FormData();
@@ -47,4 +50,5 @@ export class UserService {
   public unfollowUser(handle): Observable<any> {
     return this.http.post(`${API}actions/unfollow`, handle);
   }
+
 }

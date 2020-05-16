@@ -1,1 +1,26 @@
-<p>Coming Soon</p>
+<ul>
+  <div class="card follow-card" *ngFor="let item of usersSuggestions">
+    <div class="card-body">
+      <div class="row">
+        <div class="col pr-0 mr-0">
+          <div class="follow-card-image">
+            <div class="circle-1"></div>
+            <div class="circle-2"></div>
+            <img
+              src="{{ item.avatar }}"
+              width="70"
+              height="70"
+              alt="Jessica Potter"
+            />
+          </div>
+        </div>
+        <div class="col pl-0">
+          <p class="lead mb-1">{{item.name}}</p>
+          <span>{{item.handle}}</span>
+        </div>
+      </div>
+      <a class="btn btn-block follow" *ngIf="item.followButton" (click)="onFollow(item)">Follow</a>
+      <a class="btn btn-block unfollow" *ngIf="!item.followButton" (click)="onUnfollow(item)">Unfollow</a>
+    </div>
+  </div>
+</ul>

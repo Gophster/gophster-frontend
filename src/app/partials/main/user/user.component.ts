@@ -42,7 +42,6 @@ export class UserComponent implements OnInit, OnDestroy {
   public birthDate: string;
   public mainHandle: string;
   public routeParam: string;
-  public blah;
 
   constructor(
     private userService: UserService,
