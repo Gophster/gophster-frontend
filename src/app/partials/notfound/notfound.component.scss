@@ -1,0 +1,67 @@
+.leftside,
+.rightside {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(255, 252, 189);
+}
+
+.display-4 {
+  font-weight: bold;
+}
+.card {
+  background-color: rgb(255, 252, 189);
+  border: none;
+}
+.card-title,
+.card-text {
+  color: #90613b;
+}
+
+@media (max-width: 350px) {
+  .card-title {
+    font-size: 30px;
+  }
+  .card-text {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+@media only screen and (max-width: 500px) and (min-width: 350px) {
+  .card-title {
+    font-size: 35px;
+  }
+  .card-text {
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+@media only screen and (max-width: 800px) and (min-width: 500px) {
+  .card-title {
+    font-size: 50px;
+  }
+  .card-text {
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+
+button {
+  background-color: white;
+  border: none;
+
+  border-radius: 15px;
+  color: rgb(179, 135, 89);
+  &:hover {
+    background-color: rgb(164, 108, 60);
+  }
+  &:active {
+    background-color: rgb(164, 108, 60);
+    border-color: black;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+.gophster-image {
+  height: 33em;
+}

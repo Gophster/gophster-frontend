@@ -1,0 +1,43 @@
+<div class="contaier">
+  <div class="row no-gutters">
+    <div class="col-md-6 col-12">
+      <div class="leftside">
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center">
+            <div class="card w-75" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title display-sm-4 display-1">404</h5>
+                <h5 class="card-title display-3">Lost in Holes?</h5>
+                <p class="card-text h4">
+                  You have reacher the undiscoverable holes. <br />
+                  The page ypu requested could not be found.<br />
+                  Don't worry and return to the previous page.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg my-3"
+                  (click)="onRedirect()"
+                >
+                  <b>GO HOME</b>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 d-none d-md-block">
+      <div class="rightside text-center">
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center">
+            <img
+              [src]="imagePath + 'gophster.png'"
+              alt=""
+              class="img-fluid img-responsive .hidden-md-down gophster-image"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

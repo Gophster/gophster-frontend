@@ -12,10 +12,25 @@
         <h5>{{ user.name }}</h5>
         <h6 class="h5">@{{ user.handle }}</h6>
       </span>
-      <button class="btn mt-4 follow" *ngIf="routeParam && routeParam !== mainHandle && !followButton" (click)="onFollow()">Follow</button>
-      <button class="btn mt-4 unfollow" *ngIf="routeParam && routeParam !== mainHandle && followButton" (click)="onUnfollow()">Unfollow</button>
+      <button
+        class="btn mt-4 follow"
+        *ngIf="routeParam && routeParam !== mainHandle && !followButton"
+        (click)="onFollow()"
+      >
+        Follow
+      </button>
+      <button
+        class="btn mt-4 unfollow"
+        *ngIf="routeParam && routeParam !== mainHandle && followButton"
+        (click)="onUnfollow()"
+      >
+        Unfollow
+      </button>
     </div>
-    <div class="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3" *ngIf="!routeParam || routeParam === mainHandle">
+    <div
+      class="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3"
+      *ngIf="!routeParam || routeParam === mainHandle"
+    >
       <a id="modal " data-toggle="modal" data-target="#profileEdit">
         <span class="d-none d-md-inline">
           <i class="fas fa-cog"></i> Edit Profile
@@ -40,14 +55,14 @@
       <span class="d-none d-md-inline">
         Followers:
       </span>
-      {{this.user.followersAmount}}
+      {{ this.user.followersAmount }}
     </span>
     <span class="ml-3">
       <i class="fas fa-lg fa-running"></i>
-        <span class="d-none d-md-inline">
-          Following:
-        </span>
-       {{this.user.followingAmount}}
+      <span class="d-none d-md-inline">
+        Following:
+      </span>
+      {{ this.user.followingAmount }}
     </span>
   </div>
 
@@ -116,7 +131,8 @@
             />
           </div>
           <div class="form-group my-md-3 my-sm-4 my-xs-1">
-            <label class="file-label">Avatar
+            <label class="file-label"
+              >Avatar
               <input
                 class="file-input"
                 type="file"
