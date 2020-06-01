@@ -18,6 +18,7 @@ import {GophsService} from './services/gophs/gophs.service';
 import { ProfileComponent } from './partials/profile/profile.component';
 import {UserService} from './services/user/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotfoundComponent } from './partials/notfound/notfound.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegistrationComponent,
     ResetpwdComponent,
     ProfileComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

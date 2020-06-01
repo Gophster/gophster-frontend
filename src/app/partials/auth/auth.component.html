@@ -1,24 +1,26 @@
 <div class="container-fluid">
-  <div class="row no-gutters align-ites-center ">
-    <div class="col-md-8  d-none d-md-block">
+  <div class="row no-gutters align-items-center">
+    <div class="col-md-8 d-none d-md-block">
       <div class="leftside text-center">
         <div class="container h-100">
-          <div class="row h-100 justify-content-center align-items-center ">
+          <div class="row h-100 justify-content-center align-items-center">
             <img
               [src]="imagePath + 'logo.PNG'"
               alt=""
-              class="img-fluid img-responsive  .hidden-md-down logo"
+              class="img-fluid img-responsive .hidden-md-down logo"
             />
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4  col-12 ">
+    <div class="col-md-4 col-12">
       <div class="rightside my-auto text-center">
         <div class="container h-100">
-          <div class="row h-100 justify-content-center align-items-center ">
+          <div class="row h-100 justify-content-center align-items-center">
             <form class="col-10" #f="ngForm" (ngSubmit)="login(f)">
-              <div class="alert alert-success" *ngIf="registrired">Registrired succesfully</div>
+              <div class="alert alert-success" *ngIf="registrired">
+                Registrired succesfully
+              </div>
               <div id="signupdiv">
                 <h4 class="h2">Not a Gopher?</h4>
                 <button
@@ -32,14 +34,14 @@
                 <div class="separator">OR</div>
               </div>
               <div class="alert alert-danger" role="alert" *ngIf="errorDisplay">
-                {{errorText}}
+                {{ errorText }}
               </div>
               <div class="container">
-                <div class="form-group  my-md-4 my-sm-4 my-xs-1">
+                <div class="form-group my-md-4 my-sm-4 my-xs-1">
                   <label for="handle">Handle or Email address</label>
                   <input
                     type="text"
-                    class=" form-control form-control-lg "
+                    class="form-control form-control-lg"
                     required
                     [(ngModel)]="user.login"
                     name="handle"
