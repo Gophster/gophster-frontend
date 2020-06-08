@@ -11,7 +11,9 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { UserComponent } from './user/user.component';
-import {UserModule} from './user/user.module';
+import { UserModule} from './user/user.module';
+import { MessageComponent } from './message/message.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import {UserModule} from './user/user.module';
     RouterModule.forChild(routes),
     InfiniteScrollModule
   ],
-  declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent],
+  declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent, MessageComponent, NotificationComponent],
   exports: [MainComponent],
   providers: [AuthGuard],
 })

@@ -9,7 +9,8 @@ import { MainComponent } from "./partials/main/main.component";
 import { UserComponent } from "./partials/main/user/user.component";
 import { TimelineComponent } from "./partials/main/timeline/timeline.component";
 import { NotfoundComponent } from "./partials/notfound/notfound.component";
-
+import { MessageComponent } from "./partials/main/message/message.component";
+import { NotificationComponent  } from "./partials/main/notification/notification.component";
 const routes: Routes = [
   {
     path: "",
@@ -19,6 +20,8 @@ const routes: Routes = [
       { path: "user", component: UserComponent },
       { path: "user/:id", component: UserComponent },
       { path: "", component: TimelineComponent, pathMatch: "full" },
+      { path: "message", component: MessageComponent },
+      { path: "notification", component: NotificationComponent },
     ],
   },
   {
