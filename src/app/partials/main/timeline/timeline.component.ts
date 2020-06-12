@@ -84,42 +84,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     });
   }
 
-  public deleteGoph(item: any) {
-    this.deleteGophSubscription = this.gophsService.deleteGoph(item.id).subscribe((response) => {
-      const deletedGoph = this.posts.find(goph => goph.id === item.id);
-      this.posts = this.posts.filter(goph => goph.id !== item.id);
-    });
-  }
-
-  public editGoph(item) {
-    this.post = item.text;
-    this.editMode = true;
-    this.selectedItemId = item.id;
-  }
-
-  public onEditGoph() {
-    if (this.countStringSize >= this.post.length ) {
-      const sendObject = {
-        text: this.post
-      };
-      this.editGophSubscription = this.gophsService.editGoph(this.selectedItemId, sendObject).subscribe((response) => {
-        const editedGoph = this.posts.find(item => item.id === response.id);
-        editedGoph.text = response.text;
-        this.cancelEditGoph();
-        Swal.fire({
-          title: '',
-          text: 'The Goph has successfully updated',
-          icon: 'success',
-          confirmButtonColor: 'rgb(171, 119, 75)',
-          timer: 3000,
-        });
-      });
-    }
-  }
-
-  public cancelEditGoph() {
-    this.post = '';
-    this.selectedItemId = null;
-    this.editMode = false;
+  public onItemClick(itemId: number) {
+    console.log();
   }
 }

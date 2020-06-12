@@ -42,6 +42,7 @@ export class UserComponent implements OnInit, OnDestroy {
   public birthDate: string;
   public mainHandle: string;
   public routeParam: string;
+  public editMode = false;
 
   constructor(
     private userService: UserService,
@@ -53,10 +54,11 @@ export class UserComponent implements OnInit, OnDestroy {
   private getUserDataSubscription: Subscription;
   private getProfileGophsSubscription: Subscription;
   private postUserDataSubscription: Subscription;
-  private getGophsSubscription: Subscription;
+  private editGophSubscription: Subscription;
   private followUserSubscription: Subscription;
   private unfollowUserSubscription: Subscription;
   private isFollowingSubscription: Subscription;
+  private deleteGophSubscription: Subscription;
 
   ngOnInit(): void {
     this.mainHandle = jwtDecode(localStorage.getItem('access_token')).handle;
@@ -90,6 +92,12 @@ export class UserComponent implements OnInit, OnDestroy {
     }
     if (this.isFollowingSubscription) {
       this.isFollowingSubscription.unsubscribe();
+    }
+    if (this.deleteGophSubscription) {
+      this.deleteGophSubscription.unsubscribe();
+    }
+    if (this.editGophSubscription) {
+      this.editGophSubscription.unsubscribe();
     }
   }
 
@@ -139,6 +147,9 @@ export class UserComponent implements OnInit, OnDestroy {
       .getProfileGoph(handle, params)
       .subscribe((response) => {
         this.posts.push(...response.items);
+        for (const item of this.posts) {
+          item.editMode = false;
+        }
         this.queryParams.totalPages = response.meta.totalPages;
       });
   }
@@ -166,6 +177,46 @@ export class UserComponent implements OnInit, OnDestroy {
     }, (error) => {
       this.router.navigate(['/404']);
     });
+  }
+
+  public deleteGoph(item: any) {
+    this.deleteGophSubscription = this.gophsService.deleteGoph(item.id).subscribe((response) => {
+      this.posts = this.posts.filter(goph => goph.id !== item.id);
+      Swal.fire({
+        title: '',
+        text: 'The Goph has successfully been deleted',
+        icon: 'success',
+        confirmButtonColor: 'rgb(171, 119, 75)',
+        timer: 3000,
+      });
+    });
+  }
+
+  public editGoph(index: number) {
+    this.posts[index].editMode = true;
+  }
+
+  public onEditGoph(editedItem: any, index: number) {
+    const sendObject = {
+      text: editedItem.text
+    };
+    this.editGophSubscription = this.gophsService.editGoph(editedItem.id, sendObject).subscribe((response) => {
+      const editedGoph = this.posts.find(item => item.id === response.id);
+      editedGoph.text = response.text;
+      this.cancelEditGoph(index);
+      Swal.fire({
+        title: '',
+        text: 'The Goph has successfully updated',
+        icon: 'success',
+        confirmButtonColor: 'rgb(171, 119, 75)',
+        timer: 3000,
+      });
+    });
+  }
+
+  public cancelEditGoph(index: number) {
+    this.posts[index].editMode = false;
+    console.log(this.posts);
   }
 
   public onScroll() {

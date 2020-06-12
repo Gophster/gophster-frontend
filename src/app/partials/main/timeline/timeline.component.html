@@ -15,26 +15,13 @@
       (click)="onGopher()"
       type="button"
       class="ml-auto btn my-1 mr-1 px-4"
-      *ngIf="!editMode"
     >
       Submit
     </button>
-    <span *ngIf="editMode" class="ml-auto">
-      <button
-        type="button"
-        class="btn my-1 mr-2 px-4"
-        (click)="cancelEditGoph()"
-      >
-        Cancel
-      </button>
-      <button type="button" class="btn my-1 mr-1 px-4" (click)="onEditGoph()">
-        Edit
-      </button>
-    </span>
   </div>
 </div>
 
-<div *ngFor="let postItem of posts" class="container display-post mt-2">
+<div *ngFor="let postItem of posts" class="container display-post mt-2" (click)="onItemClick(postItem.id)">
   <div class="row">
     <div class="col-2 mr-3 mr-md-0">
       <img
@@ -54,26 +41,6 @@
           <span class="pr-1">
             {{ postItem.text }}
           </span>
-        </div>
-        <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1">
-          <div class="btn-group dropleft">
-            <a
-              data-toggle="dropdown"
-              aria-expanded="false"
-              aria-haspopup="true"
-              href=""
-            >
-              <i class="fas fa-sort-down"></i>
-            </a>
-            <div class="dropdown-menu row" aria-labelledby="dropdownMenu2">
-              <a class="" (click)="deleteGoph(postItem)">
-                <i class="fas fa-trash-alt"></i> Delete</a
-              >
-              <a class="" (click)="editGoph(postItem)">
-                <i class="fas fa-edit"></i> Update</a
-              >
-            </div>
-          </div>
         </div>
       </div>
     </div>
