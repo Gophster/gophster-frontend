@@ -19,9 +19,9 @@ export class GophsService {
 
   public getGoph(params?: any): Observable<any> {
     if (params) {
-      return this.http.get(`${API}gophs${params}`);
+      return this.http.get(`${API}gophs/feed${params}`);
     } else {
-      return this.http.get(`${API}gophs?limit=10`);
+      return this.http.get(`${API}gophs/feed?limit=10`);
     }
   }
 

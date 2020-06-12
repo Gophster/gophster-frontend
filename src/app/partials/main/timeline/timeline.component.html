@@ -24,7 +24,7 @@
 <div *ngFor="let postItem of posts" class="container display-post mt-2">
   <div class="row">
     <div class="col-10 col-xs-11 col-sm-11 col-md-11 col-lg-11">
-      <h6 class="h6 mt-2">@{{ obj.handle }}</h6>
+      <h6 class="h6 mt-2">@{{ postItem.author.handle }}</h6>
       <span class="pr-1">
         {{ postItem.text }}
       </span>

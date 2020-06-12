@@ -4,7 +4,7 @@ import { UserService } from '../../../services/user/user.service';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { GophsService } from '../../../services/gophs/gophs.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -46,7 +46,8 @@ export class UserComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private gophsService: GophsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public router: Router
   ) {}
 
   private getUserDataSubscription: Subscription;
@@ -67,7 +68,7 @@ export class UserComponent implements OnInit, OnDestroy {
       this.isFollowing();
     } else {
       this.getUserData(this.mainHandle);
-      this.getGophs();
+      this.getProfileGoph(this.mainHandle);
     }
   }
 
@@ -77,9 +78,6 @@ export class UserComponent implements OnInit, OnDestroy {
     }
     if (this.getProfileGophsSubscription) {
       this.getProfileGophsSubscription.unsubscribe();
-    }
-    if (this.getGophsSubscription) {
-      this.getGophsSubscription.unsubscribe();
     }
     if (this.postUserDataSubscription) {
       this.postUserDataSubscription.unsubscribe();
@@ -132,23 +130,8 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   public onDateChoose(date) {
-    let myDate = date.target.value;
-    myDate = myDate.split('-');
-    this.obj.birthdate = new Date(
-      myDate[0],
-      myDate[2],
-      myDate[1]
-    ).toISOString();
+    this.obj.birthdate = new Date(date).toISOString();
     this.birthDate = this.obj.birthdate.split('T')[0];
-  }
-
-  public getGophs(params?: any) {
-    this.getGophsSubscription = this.gophsService
-      .getGoph(params)
-      .subscribe((response) => {
-        this.posts.push(...response.items);
-        this.queryParams.totalPages = response.meta.totalPages;
-      });
   }
 
   public getProfileGoph(handle, params?: any) {
@@ -180,13 +163,19 @@ export class UserComponent implements OnInit, OnDestroy {
     const sendHandle = { handle : this.user.handle};
     this.isFollowingSubscription = this.userService.isFollowing(sendHandle).subscribe((response) => {
       this.followButton = response.data;
+    }, (error) => {
+      this.router.navigate(['/404']);
     });
   }
 
   public onScroll() {
     history.scrollRestoration = 'manual';
     if (this.queryParams.currentPage <= this.queryParams.totalPages) {
-      this.getGophs(`?page=${this.queryParams.currentPage}`);
+      if (this.routeParam) {
+        this.getProfileGoph(this.routeParam, `?page=${this.queryParams.currentPage}`);
+      } else {
+        this.getProfileGoph(this.mainHandle, `?page=${this.queryParams.currentPage}`);
+      }
       this.queryParams.currentPage++;
     }
   }
