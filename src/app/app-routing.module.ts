@@ -10,8 +10,8 @@ import { UserComponent } from './partials/main/user/user.component';
 import { TimelineComponent } from './partials/main/timeline/timeline.component';
 import { NotfoundComponent } from './partials/notfound/notfound.component';
 import {GophComponent} from './partials/main/goph/goph.component';
-import { MessageComponent } from "./partials/main/message/message.component";
-import { NotificationComponent  } from "./partials/main/notification/notification.component";
+import { MessageComponent } from './partials/main/message/message.component';
+import { NotificationComponent  } from './partials/main/notification/notification.component';
 
 const routes: Routes = [
   {
