@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {UserService} from '../../../services/user/user.service';
 import jwtDecode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,7 +15,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   public mainHandle: string;
   public object: {handle: string} = {handle : ''};
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public router: Router) { }
 
   private getUsersDataSubscription: Subscription;
   private followUserSubscription: Subscription;
@@ -45,10 +46,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.getUsersDataSubscription = this.userService
       .getUsersSuggestionData()
       .subscribe((response) => {
-        console.log(response);
         this.usersSuggestions = response;
-        for (const obj in this.usersSuggestions) {
-          this.usersSuggestions[obj].followButton = true;
+        for (const obj of this.usersSuggestions) {
+          obj.followButton = true;
         }
         // this.user = response;
         // // this.obj.handle = response.handle;

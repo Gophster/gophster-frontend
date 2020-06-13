@@ -120,7 +120,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         this.router.navigate(['/auth']);
       }, (error) => {
         // error = JSON.parse(error);
-        console.log(error.error.message);
         if (error.error.statusCode === 409) {
           if (error.error.message.includes('handle')) {
             this.handleErrorText = '* Handle already exists';

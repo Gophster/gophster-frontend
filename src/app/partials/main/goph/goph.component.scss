@@ -1,0 +1,73 @@
+.container {
+  border: 1px solid rgb(246, 246, 203);
+  outline: none;
+  border-radius: 15px;
+  line-height: 2;
+  background-color: rgb(246, 246, 203);
+}
+textarea {
+  padding: 10px;
+  color: rgb(163, 108, 60);
+  border: none;
+  outline: none;
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none; /*remove the resize handle on the bottom right*/
+  height: auto;
+  background-color: rgb(246, 246, 203);
+  &:focus {
+    background-color: rgb(246, 246, 203);
+    color: rgb(163, 108, 60);
+    outline: 0;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+button {
+  background-color: rgb(179, 135, 89);
+  border-radius: 15px;
+  color: white;
+  &:hover {
+    background-color: rgb(164, 108, 60);
+  }
+  &:active {
+    background-color: rgb(164, 108, 60);
+    border-color: black;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+a,
+h6 {
+  color: rgb(179, 135, 89);
+}
+::placeholder {
+  color: rgb(179, 135, 89);
+}
+.dropdown-menu {
+  max-height: max-content;
+  max-width: max-content;
+  background-color: rgb(246, 246, 203);
+  color: rgb(179, 135, 89);
+  border-radius: 12px;
+  a {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+  }
+  box-shadow: 1px 1px rgb(164, 108, 60);
+}
+span {
+  color: rgb(164, 108, 60);
+}

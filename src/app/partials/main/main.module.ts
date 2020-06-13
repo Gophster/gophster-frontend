@@ -10,8 +10,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { UserComponent } from './user/user.component';
-import { UserModule} from './user/user.module';
+import { UserModule } from './user/user.module';
+import { GophModule } from './goph/goph.module';
 import { MessageComponent } from './message/message.component';
 import { NotificationComponent } from './notification/notification.component';
 
@@ -21,6 +21,7 @@ import { NotificationComponent } from './notification/notification.component';
     FormsModule,
     DashboardModule,
     UserModule,
+    GophModule,
     RouterModule.forChild(routes),
     InfiniteScrollModule
   ],
