@@ -216,7 +216,6 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public cancelEditGoph(index: number) {
     this.posts[index].editMode = false;
-    console.log(this.posts);
   }
 
   public onScroll() {

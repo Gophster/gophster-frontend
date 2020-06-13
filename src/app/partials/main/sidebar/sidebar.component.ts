@@ -46,10 +46,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.getUsersDataSubscription = this.userService
       .getUsersSuggestionData()
       .subscribe((response) => {
-        console.log(response);
         this.usersSuggestions = response;
-        for (const obj in this.usersSuggestions) {
-          this.usersSuggestions[obj].followButton = true;
+        for (const obj of this.usersSuggestions) {
+          obj.followButton = true;
         }
         // this.user = response;
         // // this.obj.handle = response.handle;

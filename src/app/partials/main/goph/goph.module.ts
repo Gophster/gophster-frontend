@@ -6,7 +6,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {GophComponent} from './goph.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule,
+  imports: [CommonModule,
     InfiniteScrollModule],
   declarations: [GophComponent],
   exports: [GophComponent],
