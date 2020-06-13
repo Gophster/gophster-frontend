@@ -19,6 +19,7 @@ import { ProfileComponent } from './partials/profile/profile.component';
 import {UserService} from './services/user/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotfoundComponent } from './partials/notfound/notfound.component';
+import {NotificationsService} from './services/notifications/notifications.service';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { NotfoundComponent } from './partials/notfound/notfound.component';
     StateService,
     GophsService,
     UserService,
+    NotificationsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

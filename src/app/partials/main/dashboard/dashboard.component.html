@@ -6,7 +6,7 @@
   </li>
   <li class="nav-item">
     <a (click)="onNotification()" class="nav-link h4"
-      ><i class="fas fa-bell"></i> Notification</a
+      ><i class="fas fa-bell"></i><span class="notification-count" [ngStyle]="{'display':  NotificationsQuantity === 0? 'none' : '' }"><span>{{NotificationsQuantity}}</span></span> Notification</a
     >
   </li>
   <li class="nav-item">

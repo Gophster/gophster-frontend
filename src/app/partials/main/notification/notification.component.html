@@ -3,36 +3,19 @@
     <div class="card-header mt-2">
       <h1 class="h4">Notification</h1>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
+    <ul class="list-group list-group-flush" *ngFor="let item of notifications" >
+      <li class="list-group-item" (click)="onNotificationClick(item.link)">
         <div class="row align-items-center">
           <div class="col-1"><i class="far fa-bell fa-lg"></i></div>
           <div class="col-3">
             <div class="follow-card-image">
               <img
-                src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+                src="{{item.initiator.avatar}}"
                 alt="Jessica Potter"
               />
             </div>
           </div>
-          <div class="col-7">
-            <p class="text">Artur Zakharyan <small>followed you</small></p>
-          </div>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="row align-items-center">
-          <div class="col-1"><i class="far fa-bell fa-lg"></i></div>
-          <div class="col-3">
-            <div class="follow-card-image">
-              <img
-                src="https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2019%2F11%2Fspongebob-squarepants-spinoff-squidward-netflix-series-info-1.jpg?q=75&w=800&cbr=1&fit=max"
-                alt="Jessica Potter"
-              />
-            </div>
-          </div>
-          <div class="col-7">
-            <p class="text">Artur Zakharyan <small>followed you</small></p>
+          <div class="col-7" [innerHTML]="item.text">
           </div>
         </div>
       </li>
