@@ -86,13 +86,9 @@ export class GophComponent implements OnInit, OnDestroy {
   //   }
   // }
   //
-  public  getGoph(params?: any) {
-    this.getGophSubscription = this.gophsService.getGoph(params).subscribe((response) => {
-      // this.posts.push(... response.items);
+  public  getGoph(gophId: any) {
+    this.getGophSubscription = this.gophsService.getGoph(gophId).subscribe((response) => {
       this.goph = response;
-      // this.queryParams.totalPages = response.meta.totalPages;
-      // this.queryParams.next = response.links.next.substr(response.links.next.indexOf('?'), response.links.next.length);
-      // this.queryParams.last = response.links.last.substr(response.links.last.indexOf('?'), response.links.last.length);
     });
   }
 
