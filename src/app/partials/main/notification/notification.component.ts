@@ -21,7 +21,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
     this.getNotifications();
     setTimeout(() => {
       this.readAllNotification();
-    }, 3000);
+    }, 500);
   }
 
   ngOnDestroy(): void {

@@ -4,9 +4,12 @@
       <h1 class="h4">Notification</h1>
     </div>
     <ul class="list-group list-group-flush" *ngFor="let item of notifications">
-      <li class="list-group-item" (click)="onNotificationClick(item.link)">
+      <li class="list-group-item" (click)="onNotificationClick(item.link)" [ngStyle]="{'background-color': item.read ? 'inherit' : '#f5f5da'  } ">
         <div class="row align-items-center">
-          <div class="col-1"><i class="far fa-bell fa-lg"></i></div>
+          <div class="col-1">
+            <i *ngIf="item.read" class="far fa-bell fa-lg"></i>
+            <i *ngIf="!item.read" class="fas fa-bell fa-lg"></i>
+          </div>
           <div class="col-2">
               <img
                 class="my-3"
