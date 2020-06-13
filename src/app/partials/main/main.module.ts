@@ -11,7 +11,9 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { UserComponent } from './user/user.component';
-import {UserModule} from './user/user.module';
+import { UserModule } from './user/user.module';
+import { GophModule } from './goph/goph.module';
+import {GophComponent} from './goph/goph.component';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import {UserModule} from './user/user.module';
     FormsModule,
     DashboardModule,
     UserModule,
+    GophModule,
     RouterModule.forChild(routes),
     InfiniteScrollModule
   ],

@@ -4,6 +4,7 @@ import {GophsService} from '../../../services/gophs/gophs.service';
 import {Subscription} from 'rxjs';
 import {repeat} from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -37,7 +38,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private gophsService: GophsService) {}
+  constructor(private gophsService: GophsService, public router: Router) {}
 
   ngOnInit(): void {
     this.obj = jwtDecode(localStorage.getItem('access_token'));
@@ -74,7 +75,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
   }
 
   public  getGophs(params?: any) {
-    this.getGophsSubscription = this.gophsService.getGoph(params).subscribe((response) => {
+    this.getGophsSubscription = this.gophsService.getGophs(params).subscribe((response) => {
       this.posts.push(... response.items);
       console.log(response);
       this.queryParams.totalPages = response.meta.totalPages;
@@ -85,6 +86,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
   }
 
   public onItemClick(itemId: number) {
-    console.log();
+    this.router.navigate([`/goph/${itemId}`]);
+    console.log(itemId);
   }
 }
