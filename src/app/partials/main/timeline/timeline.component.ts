@@ -4,6 +4,7 @@ import {GophsService} from '../../../services/gophs/gophs.service';
 import {Subscription} from 'rxjs';
 import {repeat} from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -37,7 +38,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private gophsService: GophsService) {}
+  constructor(private gophsService: GophsService, public router: Router) {}
 
   ngOnInit(): void {
     this.obj = jwtDecode(localStorage.getItem('access_token'));
@@ -73,9 +74,10 @@ export class TimelineComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getGophs(params?: any) {
-    this.getGophsSubscription = this.gophsService.getGoph(params).subscribe((response) => {
+  public  getGophs(params?: any) {
+    this.getGophsSubscription = this.gophsService.getGophs(params).subscribe((response) => {
       this.posts.push(... response.items);
+      console.log(response);
       this.queryParams.totalPages = response.meta.totalPages;
       // this.queryParams.next = response.links.next.substr(response.links.next.indexOf('?'), response.links.next.length);
       // this.queryParams.last = response.links.last.substr(response.links.last.indexOf('?'), response.links.last.length);
@@ -83,42 +85,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
     });
   }
 
-  public deleteGoph(item: any) {
-    this.deleteGophSubscription = this.gophsService.deleteGoph(item.id).subscribe((response) => {
-      const deletedGoph = this.posts.find(goph => goph.id === item.id);
-      this.posts = this.posts.filter(goph => goph.id !== item.id);
-    });
-  }
-
-  public editGoph(item) {
-    this.post = item.text;
-    this.editMode = true;
-    this.selectedItemId = item.id;
-  }
-
-  public onEditGoph() {
-    if (this.countStringSize >= this.post.length ) {
-      const sendObject = {
-        text: this.post
-      };
-      this.editGophSubscription = this.gophsService.editGoph(this.selectedItemId, sendObject).subscribe((response) => {
-        const editedGoph = this.posts.find(item => item.id === response.id);
-        editedGoph.text = response.text;
-        this.cancelEditGoph();
-        Swal.fire({
-          title: '',
-          text: 'The Goph has successfully updated',
-          icon: 'success',
-          confirmButtonColor: 'rgb(171, 119, 75)',
-          timer: 3000,
-        });
-      });
-    }
-  }
-
-  public cancelEditGoph() {
-    this.post = '';
-    this.selectedItemId = null;
-    this.editMode = false;
+  public onItemClick(itemId: number) {
+    this.router.navigate([`/goph/${itemId}`]);
+    console.log(itemId);
   }
 }

@@ -17,12 +17,16 @@ export class GophsService {
     return this.http.post(`${API}gophs`, obj);
   }
 
-  public getGoph(params?: any): Observable<any> {
+  public getGophs(params?: any): Observable<any> {
     if (params) {
-      return this.http.get(`${API}gophs${params}`);
+      return this.http.get(`${API}gophs/feed${params}`);
     } else {
-      return this.http.get(`${API}gophs?limit=10`);
+      return this.http.get(`${API}gophs/feed?limit=10`);
     }
+  }
+
+  public getGoph(id: number): Observable<any> {
+    return this.http.get(`${API}gophs/${id}`);
   }
 
   public getProfileGoph(handle: any, params?: any): Observable<any> {

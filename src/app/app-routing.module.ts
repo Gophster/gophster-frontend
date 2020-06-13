@@ -9,6 +9,7 @@ import { MainComponent } from "./partials/main/main.component";
 import { UserComponent } from "./partials/main/user/user.component";
 import { TimelineComponent } from "./partials/main/timeline/timeline.component";
 import { NotfoundComponent } from "./partials/notfound/notfound.component";
+import {GophComponent} from './partials/main/goph/goph.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
     children: [
       { path: "user", component: UserComponent },
       { path: "user/:id", component: UserComponent },
+      { path: "goph/:id", component: GophComponent },
       { path: "", component: TimelineComponent, pathMatch: "full" },
     ],
   },

@@ -69,13 +69,69 @@
   <!-- <div class="row px-3"></div> -->
 </div>
 
-<div *ngFor="let postItem of posts" class="container display-post mt-2">
+<div *ngFor="let postItem of posts;  let i = index" class="container display-post mt-2">
   <div class="row">
-    <div class="col-10 col-xs-11 col-sm-11 col-md-11 col-lg-11">
-      <h6 class="h6 mt-2">@{{ user.handle }}</h6>
-      <span class="pr-1">
-        {{ postItem.text }}
-      </span>
+    <div class="col-2 mr-3 mr-md-0">
+      <img
+        class="my-3"
+        src="{{ postItem.author.avatar }}"
+        width="70"
+        height="70"
+        alt="Avatar"
+        style="border-radius: 50%;"
+      />
+    </div>
+    <div class="col-9 col-md-10">
+      <div class="row">
+        <div class="col-10 col-xs-11 col-sm-11 col-md-11 col-lg-11">
+          <h6 class="h5 mt-2">@{{ postItem.author.handle }}</h6>
+          <hr>
+          <span class="pr-1">
+            <span *ngIf="postItem.editMode">
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                name="text"
+                id="text"
+                [(ngModel)]="postItem.text"
+              />
+            </span>
+            <span *ngIf="!postItem.editMode">{{ postItem.text }}</span>
+          </span>
+          <span  class="ml-auto" style="float: right" *ngIf="postItem.editMode">
+      <button
+        type="button"
+        class="btn my-1 mr-2 px-4"
+        (click)="cancelEditGoph(i)"
+      >
+        Cancel
+      </button>
+      <button type="button" class="btn my-1 mr-1 px-4" (click)="onEditGoph(postItem, i)">
+        Edit
+      </button>
+    </span>
+        </div>
+        <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <div class="btn-group dropleft">
+            <a
+              data-toggle="dropdown"
+              aria-expanded="false"
+              aria-haspopup="true"
+              href=""
+            >
+              <i class="fas fa-sort-down"></i>
+            </a>
+            <div class="dropdown-menu row" aria-labelledby="dropdownMenu2">
+              <a class="" (click)="deleteGoph(postItem)">
+                <i class="fas fa-trash-alt"></i> Delete</a
+              >
+              <a class="" (click)="editGoph(i)">
+                <i class="fas fa-edit"></i> Update</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -126,8 +182,8 @@
               id="birthdate"
               class="form-control form-control-lg"
               name="birth-date"
-              [(ngModel)]="birthDate"
-              (change)="onDateChoose($event)"
+              [ngModel]="birthDate | date:'yyyy-MM-dd'"
+              (ngModelChange)="onDateChoose($event)"
             />
           </div>
           <div class="form-group my-md-3 my-sm-4 my-xs-1">
