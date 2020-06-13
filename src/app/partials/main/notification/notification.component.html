@@ -3,20 +3,21 @@
     <div class="card-header mt-2">
       <h1 class="h4">Notification</h1>
     </div>
-    <ul class="list-group list-group-flush" *ngFor="let item of notifications" >
+    <ul class="list-group list-group-flush" *ngFor="let item of notifications">
       <li class="list-group-item" (click)="onNotificationClick(item.link)">
         <div class="row align-items-center">
           <div class="col-1"><i class="far fa-bell fa-lg"></i></div>
-          <div class="col-3">
-            <div class="follow-card-image">
+          <div class="col-2">
               <img
-                src="{{item.initiator.avatar}}"
-                alt="Jessica Potter"
+                class="my-3"
+                src="{{ item.initiator.avatar }}"
+                width="70"
+                height="70"
+                alt="Avatar"
+                style="border-radius: 50%;"
               />
-            </div>
           </div>
-          <div class="col-7" [innerHTML]="item.text">
-          </div>
+          <div class="col-7 col-md-9 ml-4 ml-md-0" [innerHTML]="item.text"></div>
         </div>
       </li>
     </ul>

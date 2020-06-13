@@ -13,17 +13,6 @@ $brown: #786450;
   border: none;
   padding-bottom: 1rem;
 }
-.follow-card-image {
-  width: 50px;
-  height: 60px;
-  img {
-    display: block;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    //  background: #f5e8df;
-  }
-}
 
 @media only screen and (max-width: 600px) {
   .text {
@@ -31,4 +20,3 @@ $brown: #786450;
     left: 22%;
   }
 }
-
