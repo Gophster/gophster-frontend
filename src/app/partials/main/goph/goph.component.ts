@@ -1,44 +1,47 @@
-import {Component, OnDestroy, OnInit, HostListener} from '@angular/core';
-import jwtDecode from 'jwt-decode';
-import {GophsService} from '../../../services/gophs/gophs.service';
-import {Subscription} from 'rxjs';
-import {repeat} from 'rxjs/operators';
-import Swal from 'sweetalert2';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnDestroy, OnInit, HostListener } from "@angular/core";
+import jwtDecode from "jwt-decode";
+import { GophsService } from "../../../services/gophs/gophs.service";
+import { Subscription } from "rxjs";
+import { repeat } from "rxjs/operators";
+import Swal from "sweetalert2";
+import { ActivatedRoute } from "@angular/router";
 @Component({
-  selector: 'app-goph',
-  templateUrl: './goph.component.html',
-  styleUrls: ['./goph.component.scss']
+  selector: "app-goph",
+  templateUrl: "./goph.component.html",
+  styleUrls: ["./goph.component.scss"],
 })
 export class GophComponent implements OnInit, OnDestroy {
-  public post = '';
+  public post = "";
   public obj: any = {};
   public editMode = false;
   public selectedItemId: number;
   public countStringSize = 290;
   public queryParams = {
     currentPage: 2,
-    totalPages: null
+    totalPages: null,
   };
   public goph: {
     text: any;
+    created: any;
+    updated: any;
     author: {
-      avatar: string | any,
-      handle: string
+      avatar: string | any;
+      handle: string;
     };
   } = {
-    text: '',
+    text: "",
+    created: "",
+    updated: "",
     author: {
-      avatar: '',
-      handle: ''
-  }};
-
+      avatar: "",
+      handle: "",
+    },
+  };
 
   private getGophSubscription: Subscription;
   private postGophSubscription: Subscription;
   private deleteGophSubscription: Subscription;
   private editGophSubscription: Subscription;
-
 
   // onScroll() {
   //   history.scrollRestoration = 'manual';
@@ -48,12 +51,13 @@ export class GophComponent implements OnInit, OnDestroy {
   //   }
   // }
 
-
-
-  constructor(private gophsService: GophsService, private route: ActivatedRoute) {}
+  constructor(
+    private gophsService: GophsService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.obj = jwtDecode(localStorage.getItem('access_token'));
+    this.obj = jwtDecode(localStorage.getItem("access_token"));
     this.getGoph(this.route.snapshot.params.id);
   }
 
@@ -86,10 +90,25 @@ export class GophComponent implements OnInit, OnDestroy {
   //   }
   // }
   //
-  public  getGoph(gophId: any) {
-    this.getGophSubscription = this.gophsService.getGoph(gophId).subscribe((response) => {
-      this.goph = response;
-    });
-  }
+  public getGoph(gophId: any) {
+    this.getGophSubscription = this.gophsService
+      .getGoph(gophId)
+      .subscribe((response) => {
+        this.goph = response;
 
+        const dateTimeFormat = new Intl.DateTimeFormat("en", {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+        });
+        const [
+          { value: month },
+          ,
+          { value: day },
+          ,
+          { value: year },
+        ] = dateTimeFormat.formatToParts(Date.parse(this.goph.created));
+        this.goph.created = `${day} ${month} ${year}`;
+      });
+  }
 }
