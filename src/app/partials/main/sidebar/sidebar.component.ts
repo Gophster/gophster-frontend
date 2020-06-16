@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   public usersSuggestions = [];
-  public followButton: boolean;
   public mainHandle: string;
   public object: {handle: string} = {handle : ''};
 
@@ -50,14 +49,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
         for (const obj of this.usersSuggestions) {
           obj.followButton = true;
         }
-        // this.user = response;
-        // // this.obj.handle = response.handle;
-        // this.obj.name = this.user.name;
-        // this.obj.location = this.user.location;
-        // this.obj.avatar = this.user.avatar;
-        // this.birthDate = this.user.birthdate
-        //   ? this.user.birthdate.split('T')[0]
-        //   : null;
       });
   }
 
@@ -66,7 +57,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.followUserSubscription = this.userService.followUser(sendHandle).subscribe((response) => {
       this.getUsersData();
       item.followButton = false;
-      // this.isFollowing();
     });
   }
 
@@ -74,15 +64,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     const sendHandle = { handle : item.handle};
     this.unfollowUserSubscription = this.userService.unfollowUser(sendHandle).subscribe((response) => {
       item.followButton = true;
-      // this.isFollowing();
     });
   }
-
-  // public isFollowing() {
-  //   const sendHandle = { handle : this.user.handle};
-  //   this.isFollowingSubscription = this.userService.isFollowing(sendHandle).subscribe((response) => {
-  //     this.followButton = response.data;
-  //   });
-  // }
 
 }

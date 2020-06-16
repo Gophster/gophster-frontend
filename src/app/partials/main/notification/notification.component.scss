@@ -1,0 +1,22 @@
+$brown: #786450;
+.container,
+.container > *,
+.card-header,
+.list-group-item {
+  background-color: rgb(246, 246, 203);
+  color: rgb(163, 108, 60);
+}
+.container {
+  border-radius: 20px;
+}
+.card {
+  border: none;
+  padding-bottom: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .text {
+    position: relative;
+    left: 22%;
+  }
+}

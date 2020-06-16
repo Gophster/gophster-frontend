@@ -2,8 +2,6 @@ import {Component, OnDestroy, OnInit, HostListener} from '@angular/core';
 import jwtDecode from 'jwt-decode';
 import {GophsService} from '../../../services/gophs/gophs.service';
 import {Subscription} from 'rxjs';
-import {repeat} from 'rxjs/operators';
-import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-timeline',
@@ -14,7 +12,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
   public post = '';
   public obj: any = {};
   public editMode = false;
-  public selectedItemId: number;
   public countStringSize = 290;
   public queryParams = {
     currentPage: 2,
@@ -35,8 +32,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
       this.queryParams.currentPage++;
     }
   }
-
-
 
   constructor(private gophsService: GophsService, public router: Router) {}
 
@@ -78,9 +73,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
     this.getGophsSubscription = this.gophsService.getGophs(params).subscribe((response) => {
       this.posts.push(... response.items);
       this.queryParams.totalPages = response.meta.totalPages;
-      // this.queryParams.next = response.links.next.substr(response.links.next.indexOf('?'), response.links.next.length);
-      // this.queryParams.last = response.links.last.substr(response.links.last.indexOf('?'), response.links.last.length);
-
     });
   }
 

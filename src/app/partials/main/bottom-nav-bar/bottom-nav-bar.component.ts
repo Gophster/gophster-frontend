@@ -16,4 +16,10 @@ export class BottomNavBarComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/auth']);
   }
+  public onMessage() {
+    this.router.navigate(['/message']);
+  }
+  public onNotification() {
+    this.router.navigate(['/notification']);
+  }
 }

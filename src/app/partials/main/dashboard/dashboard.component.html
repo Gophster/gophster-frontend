@@ -1,12 +1,18 @@
 <ul class="nav sticky-top flex-column">
   <li class="nav-item">
-    <a class="nav-link active h4" (click)="onHomeRedirect()"><i class="fas fa-home"></i> Home</a>
+    <a class="nav-link active h4" (click)="onHomeRedirect()"
+      ><i class="fas fa-home"></i> Home</a
+    >
   </li>
   <li class="nav-item">
-    <a class="nav-link h4"><i class="fas fa-bell"></i> Notification</a>
+    <a (click)="onNotification()" class="nav-link h4"
+      ><i class="fas fa-bell"></i><span class="notification-count" [ngStyle]="{'display':  stateService.NotificationsQuantity === 0? 'none' : '' }"><span>{{stateService.NotificationsQuantity}}</span></span> Notification</a
+    >
   </li>
   <li class="nav-item">
-    <a class="nav-link h4"><i class="fas fa-envelope"></i> Message</a>
+    <a (click)="onMessage()" class="nav-link h4"
+      ><i class="fas fa-envelope"></i> Message</a
+    >
   </li>
   <li class="nav-item">
     <a (click)="onProfileRedirect()" class="nav-link h4"
