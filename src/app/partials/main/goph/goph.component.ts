@@ -11,15 +11,8 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./goph.component.scss']
 })
 export class GophComponent implements OnInit, OnDestroy {
-  public post = '';
   public obj: any = {};
   public editMode = false;
-  public selectedItemId: number;
-  public countStringSize = 290;
-  public queryParams = {
-    currentPage: 2,
-    totalPages: null
-  };
   public goph: {
     text: any;
     author: {
@@ -33,22 +26,10 @@ export class GophComponent implements OnInit, OnDestroy {
       handle: ''
   }};
 
-
   private getGophSubscription: Subscription;
   private postGophSubscription: Subscription;
   private deleteGophSubscription: Subscription;
   private editGophSubscription: Subscription;
-
-
-  // onScroll() {
-  //   history.scrollRestoration = 'manual';
-  //   if (this.queryParams.currentPage <= this.queryParams.totalPages) {
-  //     this.getGophs(`?page=${this.queryParams.currentPage}`);
-  //     this.queryParams.currentPage++;
-  //   }
-  // }
-
-
 
   constructor(private gophsService: GophsService, private route: ActivatedRoute) {}
 
@@ -72,20 +53,6 @@ export class GophComponent implements OnInit, OnDestroy {
     }
   }
 
-  // onGopher() {
-  //   if (this.countStringSize >= this.post.length ) {
-  //     const sendObject = {
-  //       text: this.post
-  //     };
-  //     this.postGophSubscription = this.gophsService.postGoph(sendObject).subscribe((response) => {
-  //       this.posts.unshift(response);
-  //     }, (error) => {
-  //       alert(error);
-  //     });
-  //     this.post = '';
-  //   }
-  // }
-  //
   public  getGoph(gophId: any) {
     this.getGophSubscription = this.gophsService.getGoph(gophId).subscribe((response) => {
       this.goph = response;
