@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { routes } from './main.routes';
 import { AuthGuard, NonAuthGuard } from '../../guards';
 import { MainComponent } from './main.component';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
@@ -14,18 +13,18 @@ import { UserModule } from './user/user.module';
 import { GophModule } from './goph/goph.module';
 import { MessageComponent } from './message/message.component';
 import { NotificationComponent } from './notification/notification.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    DashboardModule,
     UserModule,
     GophModule,
     RouterModule.forChild(routes),
     InfiniteScrollModule
   ],
-  declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent, MessageComponent, NotificationComponent],
+  declarations: [MainComponent, SidebarComponent, TimelineComponent, BottomNavBarComponent, NotificationComponent, MessageComponent, DashboardComponent],
   exports: [MainComponent],
   providers: [AuthGuard],
 })

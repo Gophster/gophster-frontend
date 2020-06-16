@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import {Subscription} from 'rxjs';
 import {NotificationsService} from '../../../services/notifications/notifications.service';
+import {StateService} from '../../../services/state/state.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,12 +19,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private readAllNotificationSubscription: Subscription;
   private countNotificationSubscription: Subscription;
 
-  constructor(private notificationsService: NotificationsService, private router: Router) {
+  constructor(private notificationsService: NotificationsService, private router: Router, private route: ActivatedRoute, public stateService: StateService) {
+
   }
 
   ngOnInit(): void {
     this.obj = jwtDecode(localStorage.getItem('access_token'));
     this.countNotifications();
+    this.countNotificationSubscription = this.notificationsService.getNotifications().subscribe((response) => {
+      this.stateService.NotificationsQuantity++;
+    });
   }
 
   ngOnDestroy(): void {
@@ -53,21 +58,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   public onNotification() {
-    setTimeout(() => {
-      this.readAllNotification();
-    }, 2000);
     this.router.navigate(['/notification']);
   }
 
-  public readAllNotification() {
-    this.readAllNotificationSubscription = this.notificationsService.readAllNotifications().subscribe((response) => {
-      this.NotificationsQuantity = 0;
-    });
-  }
 
   public countNotifications() {
     this.countNotificationSubscription = this.notificationsService.countNotifications().subscribe((response) => {
-      this.NotificationsQuantity = response.count;
+      this.stateService.NotificationsQuantity = response.count;
     });
   }
 }

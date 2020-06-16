@@ -20,6 +20,10 @@ import {UserService} from './services/user/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotfoundComponent } from './partials/notfound/notfound.component';
 import {NotificationsService} from './services/notifications/notifications.service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://api.gophster.localhost', options: {} };
+
 
 
 @NgModule({
@@ -38,6 +42,7 @@ import {NotificationsService} from './services/notifications/notifications.servi
     HttpClientModule,
     MainModule,
     BrowserAnimationsModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     AuthService,

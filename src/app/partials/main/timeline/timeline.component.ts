@@ -78,9 +78,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
     this.getGophsSubscription = this.gophsService.getGophs(params).subscribe((response) => {
       this.posts.push(... response.items);
       this.queryParams.totalPages = response.meta.totalPages;
-      // this.queryParams.next = response.links.next.substr(response.links.next.indexOf('?'), response.links.next.length);
-      // this.queryParams.last = response.links.last.substr(response.links.last.indexOf('?'), response.links.last.length);
-
     });
   }
 
