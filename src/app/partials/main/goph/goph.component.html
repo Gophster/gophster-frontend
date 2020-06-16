@@ -8,7 +8,7 @@
   </div>
 
   <hr />
-  <div class="gophtext my-3">
+  <div class="gophtext my-3" style="word-break: break-all;">
     {{ goph.text }}
   </div>
   <hr />
@@ -50,6 +50,9 @@
                       id="recipient-name"
                       cols="5"
                       rows="5"
+                      [(ngModel)]="reply"
+                      name="reply"
+                      ngModel
                     ></textarea>
                   </div>
                 </div>
@@ -61,8 +64,8 @@
                   >
                     Close
                   </button>
-                  <button type="button" class="btn btn-secondary">
-                    Save changes
+                  <button type="button" class="btn btn-secondary" (click)="onReply(goph)">
+                    Reply
                   </button>
                 </div>
               </div>
@@ -74,14 +77,14 @@
   </div>
 </div>
 
-<div class="container my-3" id="replybox">
+<div class="container my-3" id="replybox" *ngFor="let item of replies">
   <div class="row">
     <div class="col-2 mr-3 mr-md-0">
       <img
         class="my-3"
         width="70"
         height="70"
-        src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/spongebob-squarepants-1592120738.jpg?crop=0.482xw:1.00xh;0.169xw,0&resize=480:*"
+        src="{{item.author.avatar}}"
         alt="Avatar"
         style="border-radius: 50%;"
       />
@@ -89,19 +92,20 @@
     <div class="col-9 col-md-10 my-2">
       <div class="row">
         <div class="col-10">
-          <h6 class="h5 mt-2">@SpongeBob</h6>
+          <h6 class="h5 mt-2">{{item.author.handle}}</h6>
           <hr />
-          <span class="pr-1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
+          <span class="pr-1" style="word-break: break-all;">
+            {{item.text}}
           </span>
         </div>
       </div>
     </div>
   </div>
 </div>
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()"
+></div>
+

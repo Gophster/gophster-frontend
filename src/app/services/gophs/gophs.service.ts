@@ -29,6 +29,18 @@ export class GophsService {
     return this.http.get(`${API}gophs/${id}`);
   }
 
+  public getReplies(id: string, params: any): Observable<any> {
+    if (params) {
+      return this.http.get(`${API}reply/${id}${params}`);
+    } else {
+      return this.http.get(`${API}reply/${id}?limit=10`);
+    }
+
+  }
+  public postReply(reply: string, gophId: string): Observable<any> {
+    return this.http.post(`${API}reply`, {text : reply, goph: gophId});
+  }
+
   public getProfileGoph(handle: any, params?: any): Observable<any> {
     if (params) {
       return this.http.get(`${API}gophs/user/${handle}${params}`);
