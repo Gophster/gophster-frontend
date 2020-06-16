@@ -19,7 +19,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private readAllNotificationSubscription: Subscription;
   private countNotificationSubscription: Subscription;
 
-  constructor(private notificationsService: NotificationsService, private router: Router, private route: ActivatedRoute, public stateService: StateService) {
+  constructor(
+    private notificationsService: NotificationsService,
+    private router: Router,
+    public stateService: StateService
+  ) {
 
   }
 

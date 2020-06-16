@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   public usersSuggestions = [];
-  public followButton: boolean;
   public mainHandle: string;
   public object: {handle: string} = {handle : ''};
 
