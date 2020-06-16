@@ -1,25 +1,111 @@
-<div class="container display-post mt-2" >
+<div class="container">
+  <div class="gophheader pb-1 my-2">
+    <div class="item">
+      <img class="my-3 avatar" src="{{ goph.author.avatar }}" alt="Avatar" />
+      <h6 class="h5" *ngIf="goph.author.name">{{ goph.author.name }}</h6>
+      <h6 class="h5">@{{ goph.author.handle }}</h6>
+    </div>
+  </div>
+
+  <hr />
+  <div class="gophtext my-3" style="word-break: break-all;">
+    {{ goph.text }}
+  </div>
+  <hr />
+  <div class="chat-form">
+    <form class="form-horizontal">
+      <div class="row">
+        <div class="col-7 col-md-10 mb-2">
+          <b>{{ goph.created }}</b>
+        </div>
+        <div class="col-5 col-md-2">
+          <i
+            class="fa fa-reply"
+            type="button"
+            data-toggle="modal"
+            data-target="#addReplay"
+            aria-hidden="true"
+          >
+            Reply</i
+          >
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="addReplay"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="addReplayLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label"
+                      >What's on your mind ?</label
+                    >
+
+                    <textarea
+                      class="form-control"
+                      id="recipient-name"
+                      cols="5"
+                      rows="5"
+                      [(ngModel)]="reply"
+                      name="reply"
+                      ngModel
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-secondary" (click)="onReply(goph)">
+                    Reply
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container my-3" id="replybox" *ngFor="let item of replies">
   <div class="row">
     <div class="col-2 mr-3 mr-md-0">
       <img
         class="my-3"
-        src="{{ goph.author.avatar }}"
         width="70"
         height="70"
+        src="{{item.author.avatar}}"
         alt="Avatar"
         style="border-radius: 50%;"
       />
     </div>
-    <div class="col-9 col-md-10">
+    <div class="col-9 col-md-10 my-2">
       <div class="row">
-        <div class="col-10 col-xs-11 col-sm-11 col-md-11 col-lg-11">
-          <h6 class="h5 mt-2">@{{ goph.author.handle }}</h6>
-          <hr>
-          <span class="pr-1">
-            {{ goph.text }}
+        <div class="col-10">
+          <h6 class="h5 mt-2">{{item.author.handle}}</h6>
+          <hr />
+          <span class="pr-1" style="word-break: break-all;">
+            {{item.text}}
           </span>
         </div>
       </div>
     </div>
   </div>
 </div>
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()"
+></div>
+
