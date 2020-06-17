@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="gophheader pb-1 my-2">
+  <div class="gophheader pb-1 mb-2">
     <div class="item">
       <img class="my-3 avatar" src="{{ goph.author.avatar }}" alt="Avatar" />
       <h6 class="h5" *ngIf="goph.author.name">{{ goph.author.name }}</h6>
@@ -108,4 +108,3 @@
   [infiniteScrollThrottle]="1000"
   (scrolled)="onScroll()"
 ></div>
-
