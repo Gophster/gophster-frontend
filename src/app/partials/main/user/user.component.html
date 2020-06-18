@@ -35,6 +35,14 @@
         <span class="d-none d-md-inline">
           <i class="fas fa-cog"></i> Edit Profile
         </span>
+
+        <div class="msgicon posisiton-absolute" (click)="onItemClick(1)">
+          <i class="fas fa-envelope"></i>
+          <span class="d-none d-md-inline">
+            Message
+          </span>
+        </div>
+
         <span class="d-md-none">
           <i class="float-right mt-2 fas fa-lg fa-cog"></i>
         </span>
@@ -50,7 +58,7 @@
     <span clsss="ml-3 icons">
       <i class="fas fa-gift mr-1" *ngIf="user.birthdate"></i>{{ birthDate }}
     </span>
-    <span class="ml-3 icons">
+    <span class="ml-3 icons" data-toggle="modal" data-target="#followersModal">
       <i class="fas fa-user-friends"></i>
       <span class="d-none d-md-inline">
         Followers:
@@ -64,15 +72,9 @@
       </span>
       {{ this.user.followingAmount }}
     </span>
-    <span class="ml-4 mr-3 icons" (click)="onItemClick(1)">
-      <i class="fas fa-envelope"></i>
-      <span class="d-none d-md-inline">
-        Message
-      </span>
-    </span>
   </div>
 </div>
-<!-- Modal -->
+<!--Following Modal -->
 <div
   class="modal fade"
   id="followingModal"
@@ -85,6 +87,75 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title justify-content-center">Following</h5>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" style="background-color: #a36c3c;">
+            <div
+              class="row align-items-center followgroup mt-2"
+              (click)="onFollowItemClick('ArtZ23')"
+            >
+              <div class="col-2">
+                <img
+                  class="my-3 followimg"
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
+                  width="50"
+                  height="50"
+                  alt="Avatar"
+                />
+              </div>
+
+              <div class="col-7 col-md-9 ml-4 ml-md-0">
+                <span class="followerinfo mt-2">
+                  <p>@handle</p>
+                  <br />
+                  <p class="ml-2">Sponge</p>
+                </span>
+              </div>
+            </div>
+            <div class="row align-items-center followgroup mt-2">
+              <div class="col-2">
+                <img
+                  class="my-3 followimg"
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
+                  width="50"
+                  height="50"
+                  alt="Avatar"
+                />
+              </div>
+
+              <div class="col-7 col-md-9 ml-4 ml-md-0">
+                <span class="followerinfo mt-2">
+                  <p>@handle</p>
+                  <br />
+                  <p class="ml-2">Sponge</p>
+                </span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Followers Modal -->
+<div
+  class="modal fade"
+  id="followersModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="followersModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title justify-content-center">Followers</h5>
       </div>
       <div class="modal-body">
         <ul class="list-group list-group-flush">

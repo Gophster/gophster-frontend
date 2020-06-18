@@ -152,19 +152,23 @@ input[type="file"] {
 }
 .followimg {
   border-radius: 50%;
-  border: 1px solid;
+  border: 1.5px solid rgb(163, 108, 60);
 }
 .followgroup {
-  background-color: #a36c3c;
+  background-color: #f6f6cb;
   border-radius: 20px;
   border: 1px solid;
   cursor: pointer;
 }
 .followerinfo {
-  color: white;
+  color: rgb(163, 108, 60);
   line-height: 10px;
   display: flex;
 }
 .icons {
   cursor: pointer;
+}
+.msgicon {
+  bottom: 0;
+  position: absolute;
 }
