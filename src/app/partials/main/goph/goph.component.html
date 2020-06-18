@@ -1,7 +1,7 @@
 <div class="container">
   <div class="gophheader pb-1 mb-2">
     <div class="item">
-      <img class="my-3 avatar" src="{{ goph.author.avatar }}" alt="Avatar" />
+      <img class="my-3 avatar" src="{{ goph.author.avatar }}" alt="Avatar" (click)="onUserProfileClick(goph.author.handle)"/>
       <h6 class="h5" *ngIf="goph.author.name">{{ goph.author.name }}</h6>
       <h6 class="h5">@{{ goph.author.handle }}</h6>
     </div>
@@ -61,6 +61,7 @@
                     type="button"
                     class="btn btn-secondary"
                     data-dismiss="modal"
+                    (click)="this.reply = ''"
                   >
                     Close
                   </button>
@@ -91,6 +92,7 @@
         src="{{ item.author.avatar }}"
         alt="Avatar"
         style="border-radius: 50%;"
+        (click)="onGophAvatarClick(item.author.handle)"
       />
     </div>
     <div class="col-9 col-md-10 my-2">

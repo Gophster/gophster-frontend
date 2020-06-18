@@ -1,16 +1,16 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import jwtDecode from "jwt-decode";
-import { UserService } from "../../../services/user/user.service";
-import { Subscription } from "rxjs";
-import Swal from "sweetalert2";
-import { GophsService } from "../../../services/gophs/gophs.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import jwtDecode from 'jwt-decode';
+import { UserService } from '../../../services/user/user.service';
+import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
+import { GophsService } from '../../../services/gophs/gophs.service';
+import {ActivatedRoute, Router} from '@angular/router';
 declare var $: any;
 
 @Component({
-  selector: "app-user",
-  templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.scss"],
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit, OnDestroy {
   public queryParams = {
@@ -248,6 +248,11 @@ export class UserComponent implements OnInit, OnDestroy {
   public cancelEditGoph(index: number) {
     this.posts[index].editMode = false;
   }
+
+  public onItemClick(itemId: number) {
+    this.router.navigate([`/goph/${itemId}`]);
+  }
+
 
   public onScroll() {
     history.scrollRestoration = "manual";

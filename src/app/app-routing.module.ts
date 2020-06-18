@@ -13,7 +13,7 @@ import {GophComponent} from './partials/main/goph/goph.component';
 import { MessageComponent } from './partials/main/message/message.component';
 import { NotificationComponent  } from './partials/main/notification/notification.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: MainComponent,

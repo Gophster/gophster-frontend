@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import jwtDecode from 'jwt-decode';
 import { GophsService } from '../../../services/gophs/gophs.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import Swal from 'sweetalert2';
 declare var $: any;
 
@@ -47,7 +47,11 @@ export class GophComponent implements OnInit, OnDestroy {
   private getRepliesSubscription: Subscription;
   private postReplySubscription: Subscription;
 
-  constructor(private gophsService: GophsService, private route: ActivatedRoute) {}
+  constructor(
+    private gophsService: GophsService,
+    private route: ActivatedRoute,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.obj = jwtDecode(localStorage.getItem('access_token'));
@@ -114,7 +118,16 @@ export class GophComponent implements OnInit, OnDestroy {
     this.postReplySubscription = this.gophsService.postReply(this.reply, goph.id).subscribe((response) => {
       this.replies.unshift(response);
       $('#addReplay').modal('hide');
+      this.reply = '';
     });
+  }
+
+  public onUserProfileClick(handle: string) {
+    this.router.navigate([`/user/${handle}`]);
+  }
+
+  public onGophAvatarClick(handle: string) {
+    this.router.navigate([`/user/${handle}`]);
   }
 
   onScroll() {
