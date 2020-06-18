@@ -36,11 +36,11 @@
           <i class="fas fa-cog"></i> Edit Profile
         </span>
 
-        <div class="msgicon posisiton-absolute" (click)="onItemClick(1)">
-          <i class="fas fa-envelope"></i>
-          <span class="d-none d-md-inline">
+        <div class="msgicon" (click)="onItemClick(1)">
+          <button class="btn writemsg">
+            <i class="fas fa-envelope"> </i>
             Message
-          </span>
+          </button>
         </div>
 
         <span class="d-md-none">
@@ -212,6 +212,7 @@
     </div>
   </div>
 </div>
+
 <div
   *ngFor="let postItem of posts; let i = index"
   class="container display-post mt-2"
@@ -226,7 +227,6 @@
         alt="Avatar"
         style="border-radius: 50%;"
       />
-      <i class="fas fa-retweet ml-3 mt-3 mb-1 counter">7</i>
     </div>
     <div class="col-9 col-md-10">
       <div class="row">
@@ -283,6 +283,8 @@
           </div>
         </div>
       </div>
+
+      <i class="fas fa-retweet ml-3 mt-3 mb-1 counter">7</i>
     </div>
   </div>
 </div>
