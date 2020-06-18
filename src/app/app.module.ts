@@ -22,9 +22,7 @@ import { NotfoundComponent } from './partials/notfound/notfound.component';
 import {NotificationsService} from './services/notifications/notifications.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://api.gophster.localhost', options: {} };
-
-
+const config: SocketIoConfig = { url: 'http://api.gophster.localhost/notifications', options: {} };
 
 @NgModule({
   declarations: [

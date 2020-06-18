@@ -1,8 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
-import {routes} from './main.routes';
 import {AuthGuard, NonAuthGuard} from '../../guards';
 import {MainComponent} from './main.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
@@ -14,6 +12,8 @@ import {GophModule} from './goph/goph.module';
 import {MessageComponent} from './message/message.component';
 import {NotificationComponent} from './notification/notification.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import { routes } from '../../app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
