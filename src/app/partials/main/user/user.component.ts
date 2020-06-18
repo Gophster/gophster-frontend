@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import jwtDecode from 'jwt-decode';
 import { UserService } from '../../../services/user/user.service';
 import { Subscription } from 'rxjs';
@@ -217,6 +217,11 @@ export class UserComponent implements OnInit, OnDestroy {
   public cancelEditGoph(index: number) {
     this.posts[index].editMode = false;
   }
+
+  public onItemClick(itemId: number) {
+    this.router.navigate([`/goph/${itemId}`]);
+  }
+
 
   public onScroll() {
     history.scrollRestoration = 'manual';

@@ -68,7 +68,7 @@
 
 </div>
 
-<div *ngFor="let postItem of posts;  let i = index" class="container display-post mt-2">
+<div *ngFor="let postItem of posts;  let i = index" class="container display-post mt-2" (click)="onItemClick(postItem.id)">
   <div class="row">
     <div class="col-2 mr-3 mr-md-0">
       <img
@@ -110,7 +110,7 @@
       </button>
     </span>
         </div>
-        <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1" *ngIf="!routeParam">
           <div class="btn-group dropleft">
             <a
               data-toggle="dropdown"
