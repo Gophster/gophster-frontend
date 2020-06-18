@@ -71,8 +71,10 @@ h6 {
 span {
   color: rgb(164, 108, 60);
 }
-.fas {
+.counter {
   color: rgb(164, 108, 60);
+  position: absolute;
+  bottom: 0;
 }
 .display-post {
   cursor: pointer;

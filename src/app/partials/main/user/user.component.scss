@@ -147,8 +147,10 @@ input[type="file"] {
   width: 100%;
   color: rgb(163, 108, 60);
 }
-.fas {
+.counter {
   color: rgb(164, 108, 60);
+  position: absolute;
+  bottom: 0;
 }
 .followimg {
   border-radius: 50%;
