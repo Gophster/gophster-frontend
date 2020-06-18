@@ -158,9 +158,13 @@ input[type="file"] {
   background-color: #a36c3c;
   border-radius: 20px;
   border: 1px solid;
+  cursor: pointer;
 }
 .followerinfo {
   color: white;
   line-height: 10px;
   display: flex;
+}
+.icons {
+  cursor: pointer;
 }

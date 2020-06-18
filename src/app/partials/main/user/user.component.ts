@@ -1,16 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import jwtDecode from 'jwt-decode';
-import { UserService } from '../../../services/user/user.service';
-import { Subscription } from 'rxjs';
-import Swal from 'sweetalert2';
-import { GophsService } from '../../../services/gophs/gophs.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import jwtDecode from "jwt-decode";
+import { UserService } from "../../../services/user/user.service";
+import { Subscription } from "rxjs";
+import Swal from "sweetalert2";
+import { GophsService } from "../../../services/gophs/gophs.service";
+import { ActivatedRoute, Router } from "@angular/router";
 declare var $: any;
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+  selector: "app-user",
+  templateUrl: "./user.component.html",
+  styleUrls: ["./user.component.scss"],
 })
 export class UserComponent implements OnInit, OnDestroy {
   public queryParams = {
@@ -28,12 +28,12 @@ export class UserComponent implements OnInit, OnDestroy {
     followersAmount: number;
     followingAmount: number;
   } = {
-    handle: '',
-    name: '',
+    handle: "",
+    name: "",
     avatar: null,
-    fileName: '',
-    birthdate: '',
-    location: '',
+    fileName: "",
+    birthdate: "",
+    location: "",
     followersAmount: null,
     followingAmount: null,
   };
@@ -47,12 +47,12 @@ export class UserComponent implements OnInit, OnDestroy {
     followersAmount: number;
     followingAmount: number;
   } = {
-    handle: '',
-    name: '',
+    handle: "",
+    name: "",
     avatar: null,
-    fileName: '',
-    birthdate: '',
-    location: '',
+    fileName: "",
+    birthdate: "",
+    location: "",
     followersAmount: null,
     followingAmount: null,
   };
@@ -79,7 +79,7 @@ export class UserComponent implements OnInit, OnDestroy {
   private deleteGophSubscription: Subscription;
 
   ngOnInit(): void {
-    this.mainHandle = jwtDecode(localStorage.getItem('access_token')).handle;
+    this.mainHandle = jwtDecode(localStorage.getItem("access_token")).handle;
     this.routeParam = this.route.snapshot.params.id;
     this.user.handle = this.routeParam;
     if (this.routeParam) {
@@ -129,7 +129,7 @@ export class UserComponent implements OnInit, OnDestroy {
         this.obj.location = this.user.location;
         this.obj.avatar = this.user.avatar;
         this.birthDate = this.user.birthdate
-          ? this.user.birthdate.split('T')[0]
+          ? this.user.birthdate.split("T")[0]
           : null;
       });
   }
@@ -140,13 +140,13 @@ export class UserComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
         this.getUserData(this.mainHandle);
         Swal.fire({
-          title: '',
-          text: 'The Profile has been successfully updated',
-          icon: 'success',
-          confirmButtonColor: 'rgb(171, 119, 75)',
+          title: "",
+          text: "The Profile has been successfully updated",
+          icon: "success",
+          confirmButtonColor: "rgb(171, 119, 75)",
           timer: 3000,
         });
-        $('#profileEdit').modal('hide');
+        $("#profileEdit").modal("hide");
       });
   }
 
@@ -157,7 +157,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public onDateChoose(date) {
     this.obj.birthdate = new Date(date).toISOString();
-    this.birthDate = this.obj.birthdate.split('T')[0];
+    this.birthDate = this.obj.birthdate.split("T")[0];
   }
 
   public getProfileGoph(handle, params?: any) {
@@ -201,7 +201,7 @@ export class UserComponent implements OnInit, OnDestroy {
           this.followButton = response.data;
         },
         (error) => {
-          this.router.navigate(['/404']);
+          this.router.navigate(["/404"]);
         }
       );
   }
@@ -212,10 +212,10 @@ export class UserComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
         this.posts = this.posts.filter((goph) => goph.id !== item.id);
         Swal.fire({
-          title: '',
-          text: 'The Goph has successfully been deleted',
-          icon: 'success',
-          confirmButtonColor: 'rgb(171, 119, 75)',
+          title: "",
+          text: "The Goph has successfully been deleted",
+          icon: "success",
+          confirmButtonColor: "rgb(171, 119, 75)",
           timer: 3000,
         });
       });
@@ -236,10 +236,10 @@ export class UserComponent implements OnInit, OnDestroy {
         editedGoph.text = response.text;
         this.cancelEditGoph(index);
         Swal.fire({
-          title: '',
-          text: 'The Goph has successfully updated',
-          icon: 'success',
-          confirmButtonColor: 'rgb(171, 119, 75)',
+          title: "",
+          text: "The Goph has successfully updated",
+          icon: "success",
+          confirmButtonColor: "rgb(171, 119, 75)",
           timer: 3000,
         });
       });
@@ -250,7 +250,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   public onScroll() {
-    history.scrollRestoration = 'manual';
+    history.scrollRestoration = "manual";
     if (this.queryParams.currentPage <= this.queryParams.totalPages) {
       if (this.routeParam) {
         this.getProfileGoph(
@@ -268,5 +268,8 @@ export class UserComponent implements OnInit, OnDestroy {
   }
   public onItemClick(userId: number) {
     this.router.navigate([`/message/${userId}`]);
+  }
+  public onFollowItemClick(handle: any) {
+    this.router.navigate([`/user/${handle}`]);
   }
 }
