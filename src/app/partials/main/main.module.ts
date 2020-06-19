@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {AuthGuard, NonAuthGuard} from '../../guards';
 import {MainComponent} from './main.component';
@@ -14,6 +14,10 @@ import {NotificationComponent} from './notification/notification.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { routes } from '../../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { SocketIoModule, SocketIoConfig, Socket } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://api.gophster.localhost', options: {  }};
+
 
 @NgModule({
   imports: [
@@ -22,7 +26,8 @@ import { RouterModule } from '@angular/router';
     UserModule,
     GophModule,
     RouterModule.forChild(routes),
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    SocketIoModule.forRoot(config)
   ],
   declarations: [
     MainComponent,

@@ -11,7 +11,7 @@
   </li>
   <li class="nav-item">
     <a (click)="onMessage()" class="nav-link h4"
-      ><i class="fas fa-envelope"></i> Message</a
+      ><i class="fas fa-envelope"></i> <span class="notification-count" [ngStyle]="{'display':  stateService.MessagesQuantity === 0? 'none' : '' }"><span>{{stateService.MessagesQuantity}}</span></span> Message</a
     >
   </li>
   <li class="nav-item">

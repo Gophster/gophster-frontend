@@ -47,6 +47,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       (response) => {
         // response = jwtDecode(response.accessToken);
         localStorage.setItem('access_token', response.accessToken);
+        this.stateService.token = response.accessToken;
         this.router.navigate(['']);
       },
       (error) => {
