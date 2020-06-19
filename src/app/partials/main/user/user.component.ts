@@ -271,10 +271,12 @@ export class UserComponent implements OnInit, OnDestroy {
       this.queryParams.currentPage++;
     }
   }
+
   public onItemClick(userHandle: string) {
     this.router.navigate([`/message`], { queryParams: { handle: userHandle }});
   }
   public onFollowItemClick(handle: any) {
     this.router.navigate([`/user/${handle}`]);
   }
+  
 }
