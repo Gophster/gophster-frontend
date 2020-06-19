@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -20,10 +20,12 @@ import {UserService} from './services/user/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotfoundComponent } from './partials/notfound/notfound.component';
 import {NotificationsService} from './services/notifications/notifications.service';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { SocketIoModule, SocketIoConfig, Socket } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://api.gophster.localhost', options: {} };
-
+import jwtDecode from 'jwt-decode';
+// const token = jwtDecode(localStorage.getItem('access_token');
+//
+// const config: SocketIoConfig = { url: 'http://api.gophster.localhost/notifications', options: { }};
 
 
 @NgModule({
@@ -42,7 +44,7 @@ const config: SocketIoConfig = { url: 'http://api.gophster.localhost', options: 
     HttpClientModule,
     MainModule,
     BrowserAnimationsModule,
-    SocketIoModule.forRoot(config)
+    // SocketIoModule.forRoot(config)
   ],
   providers: [
     AuthService,

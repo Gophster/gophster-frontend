@@ -63,7 +63,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
       this.postGophSubscription = this.gophsService.postGoph(sendObject).subscribe((response) => {
         this.posts.unshift(response);
       }, (error) => {
-        alert(error);
+        // alert(error);
       });
       this.post = '';
     }

@@ -1,60 +1,25 @@
-<div class="container">
-  <div class="chatheader pb-1">
-    <div class="item">
-      <a href="">
+<div class="container" *ngIf="activeUser">
+  <div class="chatheader pb-1" >
+    <div class="item mt-2"  *ngFor="let item of conversationUsers">
+      <a (click)="selectActiveUser(item)">
         <img
-          src="http://movingimages.files.wordpress.com/2009/10/earth-simulator-offers-peaks-into-our-planetary-future.jpg?w=780"
+          src="{{item.avatar}}"
           class="message-photo"
         />
-        <p class="handle">@ArtZ</p>
-      </a>
-    </div>
-
-    <div class="item">
-      <a href="">
-        <img
-          src="http://movingimages.files.wordpress.com/2009/10/earth-simulator-offers-peaks-into-our-planetary-future.jpg?w=780"
-          class="message-photo"
-        />
-        <p class="handle">@AleksandrePalavandishvili</p>
-      </a>
-    </div>
-    <div class="item">
-      <a href="">
-        <img
-          src="http://movingimages.files.wordpress.com/2009/10/earth-simulator-offers-peaks-into-our-planetary-future.jpg?w=780"
-          class="message-photo"
-        />
-        <p class="handle">@KApoka</p>
-      </a>
-    </div>
-    <div class="item">
-      <a href="">
-        <img
-          src="http://movingimages.files.wordpress.com/2009/10/earth-simulator-offers-peaks-into-our-planetary-future.jpg?w=780"
-          class="message-photo"
-        />
-        <p class="handle">@ArtZ</p>
+        <p class="handle mt-2 lead" style="font-weight: bold;">@{{item.handle}}</p>
       </a>
     </div>
   </div>
 
   <hr />
-  <div class="chat-log">
-    <div class="chat-log__item">
-      <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-      <div class="chat-log__message" style="word-break: break-all;">Yo man</div>
-    </div>
-    <div class="chat-log__item chat-log__item--own">
-      <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-      <div class="chat-log__message" style="word-break: break-all;">
-        sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-      </div>
+  <div class="chat-log" *ngIf="activeUser && conversations[activeUser.id]" #conversationDiv>
+    <div class="chat-log__item" [ngClass]="{'chat-log__item--own': message.author.handle === currentUser.handle}" *ngFor="let message of conversations[activeUser.id].items">
+      <h3 class="chat-log__author">{{message.author.handle}}<small class="ml-2">{{message.created | date: 'HH:MM'}}</small></h3>
+      <div class="chat-log__message" style="word-break: break-all;">{{message.message}}</div>
     </div>
   </div>
   <hr />
   <div class="chat-form">
-    <form class="form-horizontal">
       <div class="row">
         <div class="col-10">
           <input
@@ -62,12 +27,16 @@
             class="form-control input-lg"
             id=""
             placeholder="Message"
+            [(ngModel)] = message
           />
         </div>
         <div class="col-2">
-          <i class="far fa-paper-plane fa-lg"></i>
+          <i class="far fa-paper-plane fa-lg" (click)="onMessageSend()"></i>
         </div>
       </div>
-    </form>
   </div>
+</div>
+
+<div class="container" *ngIf="activeUser === null">
+  Please message to someone
 </div>

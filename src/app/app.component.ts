@@ -9,7 +9,7 @@ import {Socket} from 'ngx-socket-io';
 export class AppComponent {
   title = 'gophster-frontend';
 
-  constructor(private socket: Socket) {
-    socket.emit('auth', {token: localStorage.getItem('access_token')});
+  constructor() {
+
   }
 }
