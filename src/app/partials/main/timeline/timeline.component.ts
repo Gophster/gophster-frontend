@@ -61,6 +61,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
         text: this.post
       };
       this.postGophSubscription = this.gophsService.postGoph(sendObject).subscribe((response) => {
+        response.repliesAmount = 0;
         this.posts.unshift(response);
       }, (error) => {
         // alert(error);
@@ -79,4 +80,9 @@ export class TimelineComponent implements OnInit, OnDestroy {
   public onItemClick(itemId: number) {
     this.router.navigate([`/goph/${itemId}`]);
   }
+
+  public onGophAvatarClick(userHandle: string) {
+    this.router.navigate([`/user/${userHandle}`]);
+  }
+
 }

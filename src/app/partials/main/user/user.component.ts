@@ -61,6 +61,8 @@ export class UserComponent implements OnInit, OnDestroy {
   public mainHandle: string;
   public routeParam: string;
   public editMode = false;
+  public followers: any = [];
+  public followings: any = [];
 
   constructor(
     private userService: UserService,
@@ -77,6 +79,8 @@ export class UserComponent implements OnInit, OnDestroy {
   private unfollowUserSubscription: Subscription;
   private isFollowingSubscription: Subscription;
   private deleteGophSubscription: Subscription;
+  private getFollowersDataSubscription: Subscription;
+  private getFollowingsDataSubscription: Subscription;
 
   ngOnInit(): void {
     this.mainHandle = jwtDecode(localStorage.getItem('access_token')).handle;
@@ -116,6 +120,12 @@ export class UserComponent implements OnInit, OnDestroy {
     }
     if (this.editGophSubscription) {
       this.editGophSubscription.unsubscribe();
+    }
+    if (this.getFollowersDataSubscription) {
+      this.getFollowersDataSubscription.unsubscribe();
+    }
+    if (this.getFollowingsDataSubscription) {
+      this.getFollowingsDataSubscription.unsubscribe();
     }
   }
 
@@ -249,10 +259,6 @@ export class UserComponent implements OnInit, OnDestroy {
     this.posts[index].editMode = false;
   }
 
-  // public onItemClick(itemId: number) {
-  //   this.router.navigate([`/goph/${itemId}`]);
-  // }
-
 
   public onScroll() {
     history.scrollRestoration = 'manual';
@@ -272,11 +278,32 @@ export class UserComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onItemClick(userHandle: string) {
+  public onItemClick(gophId: string) {
+    this.router.navigate([`/goph/${gophId}`]);
+  }
+
+  public onMessageClick(userHandle: string) {
     this.router.navigate([`/message`], { queryParams: { handle: userHandle }});
   }
-  public onFollowItemClick(handle: any) {
-    this.router.navigate([`/user/${handle}`]);
+
+  public onGophAvatarClick(userHandle: string) {
+    this.router.navigate([`/user/${userHandle}`]);
   }
-  
+
+  public onFollowItemClick(userHandle: any) {
+    this.router.navigate([`/user/${userHandle}`]);
+  }
+
+  public onFollowersClick() {
+    this.getFollowersDataSubscription = this.gophsService.getFollowersData(this.user.handle).subscribe((response) => {
+      this.followers = response;
+    });
+  }
+
+  public onFollowingClick() {
+    this.getFollowingsDataSubscription = this.gophsService.getFollowingsData(this.user.handle).subscribe((response) => {
+      this.followings = response;
+    });
+  }
+
 }

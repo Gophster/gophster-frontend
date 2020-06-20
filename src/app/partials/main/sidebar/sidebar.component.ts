@@ -69,7 +69,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   public onUserAvatarClick(handle: string) {
     this.router.navigate([`/user/${handle}`]);
-    console.log(handle);
   }
 
 }

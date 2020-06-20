@@ -29,6 +29,18 @@ export class GophsService {
     return this.http.get(`${API}gophs/${id}`);
   }
 
+  public getRepliesQuantity(id: string): Observable<any> {
+    return this.http.get(`${API}reply/${id}`);
+  }
+
+  public getFollowersData(userHandle: string): Observable<any> {
+    return this.http.get(`${API}actions/followers/${userHandle}`);
+  }
+
+  public getFollowingsData(userHandle: string): Observable<any> {
+    return this.http.get(`${API}actions/following/${userHandle}`);
+  }
+
   public getReplies(id: string, params: any): Observable<any> {
     if (params) {
       return this.http.get(`${API}reply/${id}${params}`);

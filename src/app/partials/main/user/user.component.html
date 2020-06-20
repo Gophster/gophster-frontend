@@ -37,15 +37,15 @@
         </span>
         <div
           class="msgicon posisiton-absolute"
-          (click)="onItemClick(user.handle)"
+          (click)="onMessageClick(user.handle)"
         >
-          <button class="btn writemsg">
+          <button class="btn writemsg" *ngIf="routeParam">
             <i class="fas fa-envelope"></i>
             Message
           </button>
         </div>
 
-        <span class="d-md-none">
+        <span class="d-md-none" *ngIf="!routeParam || routeParam === mainHandle">
           <i class="float-right mt-2 fas fa-lg fa-cog"></i>
         </span>
       </a>
@@ -60,14 +60,14 @@
     <span clsss="ml-3 icons">
       <i class="fas fa-gift mr-1" *ngIf="user.birthdate"></i>{{ birthDate }}
     </span>
-    <span class="ml-3 icons" data-toggle="modal" data-target="#followersModal">
+    <span class="ml-3 icons" data-toggle="modal" data-target="#followersModal" (click)="onFollowersClick()">
       <i class="fas fa-user-friends"></i>
       <span class="d-none d-md-inline">
         Followers:
       </span>
       {{ this.user.followersAmount }}
     </span>
-    <span class="ml-3 icons" data-toggle="modal" data-target="#followingModal">
+    <span class="ml-3 icons" data-toggle="modal" data-target="#followingModal" (click)="onFollowingClick()">
       <i class="fas fa-lg fa-running"></i>
       <span class="d-none d-md-inline">
         Following:
@@ -94,11 +94,11 @@
       <div class="modal-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item" style="background-color: #a36c3c;">
-            <div class="row align-items-center followgroup mt-2">
+            <div class="row align-items-center followgroup mt-2" *ngFor="let item of followings">
               <div class="col-2">
                 <img
                   class="my-3 followimg"
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
+                  src="{{item.avatar}}"
                   width="50"
                   height="50"
                   alt="Avatar"
@@ -107,28 +107,7 @@
 
               <div class="col-7 col-md-9 ml-4 ml-md-0">
                 <span class="followerinfo mt-2">
-                  <p>@handle</p>
-                  <br />
-                  <p class="ml-2">Sponge</p>
-                </span>
-              </div>
-            </div>
-            <div class="row align-items-center followgroup mt-2">
-              <div class="col-2">
-                <img
-                  class="my-3 followimg"
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
-                  width="50"
-                  height="50"
-                  alt="Avatar"
-                />
-              </div>
-
-              <div class="col-7 col-md-9 ml-4 ml-md-0">
-                <span class="followerinfo mt-2">
-                  <p>@handle</p>
-                  <br />
-                  <p class="ml-2">Sponge</p>
+                  <p>@{{item.handle}}</p>
                 </span>
               </div>
             </div>
@@ -160,11 +139,11 @@
       <div class="modal-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item" style="background-color: #a36c3c;">
-            <div class="row align-items-center followgroup mt-2">
+            <div class="row align-items-center followgroup mt-2" *ngFor="let item of followers">
               <div class="col-2">
                 <img
                   class="my-3 followimg"
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
+                  src="{{item.avatar}}"
                   width="50"
                   height="50"
                   alt="Avatar"
@@ -173,31 +152,10 @@
 
               <div class="col-7 col-md-9 ml-4 ml-md-0">
                 <span class="followerinfo mt-2">
-                  <p>@handle</p>
-                  <br />
-                  <p class="ml-2">Sponge</p>
+                  <p>@{{item.handle}}</p>
                 </span>
               </div>
-            </div>
-            <div class="row align-items-center followgroup mt-2">
-              <div class="col-2">
-                <img
-                  class="my-3 followimg"
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
-                  width="50"
-                  height="50"
-                  alt="Avatar"
-                />
-              </div>
-
-              <div class="col-7 col-md-9 ml-4 ml-md-0">
-                <span class="followerinfo mt-2">
-                  <p>@handle</p>
-                  <br />
-                  <p class="ml-2">Sponge</p>
-                </span>
-              </div>
-            </div>
+            </div >
           </li>
         </ul>
       </div>
@@ -213,7 +171,6 @@
 <div
   *ngFor="let postItem of posts; let i = index"
   class="container display-post mt-2"
-  (click)="onItemClick(postItem.id)"
 >
   <div class="row">
     <div class="col-2 mr-3 mr-md-0">
@@ -224,6 +181,7 @@
         height="70"
         alt="Avatar"
         style="border-radius: 50%;"
+        (click)="onGophAvatarClick(user.handle)"
       />
     </div>
     <div class="col-9 col-md-10">
@@ -289,7 +247,7 @@
   <hr />
   <div class="row">
     <div class="col">
-      <span><i class="fas fa-retweet fa-lg mr-1 mb-3"></i><b>7</b></span>
+      <span><i class="fas fa-retweet fa-lg mr-1 mb-3"></i><b>{{postItem.repliesAmount}}</b></span>
     </div>
   </div>
 </div>

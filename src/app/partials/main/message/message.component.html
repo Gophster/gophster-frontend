@@ -1,6 +1,6 @@
 <div class="container" *ngIf="activeUser">
   <div class="chatheader pb-1" >
-    <div class="item mt-2"  *ngFor="let item of conversationUsers">
+    <div class="item mt-2"  *ngFor="let item of conversationUsers" [ngClass]="{'activated': item.handle === activeUser.handle}">
       <a (click)="selectActiveUser(item)">
         <img
           src="{{item.avatar}}"
