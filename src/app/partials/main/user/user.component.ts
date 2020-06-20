@@ -290,8 +290,13 @@ export class UserComponent implements OnInit, OnDestroy {
     this.router.navigate([`/user/${userHandle}`]);
   }
 
-  public onFollowItemClick(userHandle: any) {
+  public onFollowItemClick(userHandle: any, state: string) {
     this.router.navigate([`/user/${userHandle}`]);
+    if (state === 'following') {
+      $('#followingModal').modal('hide');
+    } else {
+      $('#followersModal').modal('hide');
+    }
   }
 
   public onFollowersClick() {

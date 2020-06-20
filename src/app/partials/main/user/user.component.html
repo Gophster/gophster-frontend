@@ -94,7 +94,7 @@
       <div class="modal-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item" style="background-color: #a36c3c;">
-            <div class="row align-items-center followgroup mt-2" *ngFor="let item of followings">
+            <div class="row align-items-center followgroup mt-2" *ngFor="let item of followings" (click)="onFollowItemClick(item.handle, 'following')">
               <div class="col-2">
                 <img
                   class="my-3 followimg"
@@ -139,7 +139,7 @@
       <div class="modal-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item" style="background-color: #a36c3c;">
-            <div class="row align-items-center followgroup mt-2" *ngFor="let item of followers">
+            <div class="row align-items-center followgroup mt-2" *ngFor="let item of followers" (click)="onFollowItemClick(item.handle, 'followers')">
               <div class="col-2">
                 <img
                   class="my-3 followimg"
@@ -354,7 +354,6 @@
           <li class="list-group-item" style="background-color: #a36c3c;">
             <div
               class="row align-items-center followgroup mt-2"
-              (click)="onFollowItemClick('ArtZ23')"
             >
               <div class="col-2">
                 <img
@@ -423,7 +422,6 @@
           <li class="list-group-item" style="background-color: #a36c3c;">
             <div
               class="row align-items-center followgroup mt-2"
-              (click)="onFollowItemClick('ArtZ23')"
             >
               <div class="col-2">
                 <img
