@@ -69,10 +69,6 @@ export class MessageComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.conversationUsers.unshift(response);
       }
       this.selectActiveUser(response);
-      // this.getMessagesSubscription = this.messagesService.getMessages(response.id).subscribe((responsee) => {
-      //   this.conversations[response.id] = responsee;
-      //   console.log(this.conversations);
-      // });
     });
   }
 
@@ -87,6 +83,7 @@ export class MessageComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (item) {
       this.activeUser = item;
       this.getMessagesSubscription = this.messagesService.getMessages(item.id).subscribe((response) => {
+        response.items = response.items.reverse();
         this.conversations[item.id] = response;
       });
     }
