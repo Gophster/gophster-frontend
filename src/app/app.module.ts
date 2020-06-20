@@ -10,8 +10,6 @@ import { AuthService } from './services';
 import { RegistrationService } from './services';
 import { ResetpwdComponent } from './partials/resetpwd/resetpwd.component';
 import { StateService } from './services/state/state.service';
-import { DashboardComponent } from './partials/main/dashboard/dashboard.component';
-import { MainComponent } from './partials/main/main.component';
 import { MainModule } from './partials/main';
 import {TokenInterceptor} from './interceptors/interceptor';
 import {GophsService} from './services/gophs/gophs.service';
@@ -20,14 +18,6 @@ import {UserService} from './services/user/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotfoundComponent } from './partials/notfound/notfound.component';
 import {NotificationsService} from './services/notifications/notifications.service';
-import { SocketIoModule, SocketIoConfig, Socket } from 'ngx-socket-io';
-
-import jwtDecode from 'jwt-decode';
-// const token = jwtDecode(localStorage.getItem('access_token');
-//
-// const config: SocketIoConfig = { url: 'http://api.gophster.localhost/notifications', options: { }};
-
-
 @NgModule({
   declarations: [
     AppComponent,

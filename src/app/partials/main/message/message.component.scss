@@ -114,6 +114,15 @@ hr {
 }
 @media only screen and (min-height: 950px) {
   .chat-log {
-    height: 42rem !important;
+    height: 39rem !important;
   }
+}
+
+.activated,.item:active {
+  font-weight: bold;
+  box-shadow: 0 8px 6px -6px rgb(163, 108, 60);
+}
+
+.chat-log::-webkit-scrollbar {
+  display: none;
 }

@@ -20,6 +20,7 @@ export class MessageComponent implements OnInit, OnDestroy, AfterViewChecked {
   public currentUser;
   @ViewChild('conversationDiv') private conversationDiv: ElementRef;
 
+
   private getUserDataSubscription: Subscription;
   private getMessagesSubscription: Subscription;
   private sendMessagesSubscription: Subscription;
@@ -116,5 +117,6 @@ export class MessageComponent implements OnInit, OnDestroy, AfterViewChecked {
     } catch (err) {
     }
   }
+
 
 }

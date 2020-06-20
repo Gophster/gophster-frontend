@@ -15,8 +15,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import { routes } from '../../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { SocketIoModule, SocketIoConfig, Socket } from 'ngx-socket-io';
+import { API } from './../../utils';
 
-const config: SocketIoConfig = { url: 'http://api.gophster.localhost', options: {  }};
+const config: SocketIoConfig = { url: API , options: {  }};
 
 
 @NgModule({
