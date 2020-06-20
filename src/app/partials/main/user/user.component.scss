@@ -139,6 +139,23 @@ i {
     background-color: #66bb6a;
   }
 }
+
+.writemsg-clone {
+  color: wheat;
+
+  border: 2px solid rgb(163, 108, 60);
+  background-color: rgb(163, 108, 60);
+  &:hover {
+    color: white;
+    border: 2px solid white;
+    background-color: #66bb6a;
+  }
+
+  & > .fa-envelope {
+    color: wheat;
+  }
+}
+
 .writemsg > .fa-envelope {
   color: wheat;
 }

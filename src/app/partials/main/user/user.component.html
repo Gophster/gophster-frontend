@@ -36,7 +36,7 @@
           <i class="fas fa-cog"></i> Edit Profile
         </span>
         <div
-          class="msgicon posisiton-absolute"
+          class="msgicon posisiton-absolute d-none d-md-block"
           (click)="onMessageClick(user.handle)"
         >
           <button class="btn writemsg" *ngIf="routeParam">
@@ -50,6 +50,17 @@
         </span>
       </a>
     </div>
+  </div>
+  <div class="row d-md-none">
+  <div
+    class="col-12 posisiton-absolute d-md-none"
+    (click)="onMessageClick(user.handle)"
+  >
+    <button class="btn btn-block writemsg-clone" *ngIf="routeParam">
+      <i class="fas fa-envelope"></i>
+      Message
+    </button>
+  </div>
   </div>
   <hr />
   <div class="row mt-3 icons">
